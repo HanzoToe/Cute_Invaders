@@ -10,6 +10,16 @@ public class Player : MonoBehaviour
     public Laser laserPrefab;
     Laser laser;
     float speed = 5f;
+    public float timer = 0.5f;
+    float Orginaltime;
+
+    private void Start()
+    {
+        Orginaltime = timer;  
+    }
+
+
+
 
     // Update is called once per frame
     void Update()
@@ -31,11 +41,14 @@ public class Player : MonoBehaviour
         position.x = Mathf.Clamp(position.x, leftEdge.x, rightEdge.x);
 
         transform.position = position;
-        
 
-        if (Input.GetKeyDown(KeyCode.Space) && laser == null)
+        
+        timer -= Time.deltaTime; 
+
+        if (Input.GetKey(KeyCode.Space) && timer <= 0)
         {
             laser = Instantiate(laserPrefab, transform.position, Quaternion.identity);
+            timer = Orginaltime; 
         }
     }
 
