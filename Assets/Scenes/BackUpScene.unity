@@ -174,6 +174,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8711208139004429193, guid: 0e637300ea7dc9345b65803d08d66d5f, type: 3}
+      propertyPath: timer
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -700,8 +704,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   invadersScript: {fileID: 0}
-  startCharge: 0
-  maxCharge: 100
+  newTime: 0.18
 --- !u!1001 &1959891218
 PrefabInstance:
   m_ObjectHideFlags: 0
