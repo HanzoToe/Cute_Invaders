@@ -15,7 +15,7 @@ public class Invaders : MonoBehaviour
     private Vector3 direction = Vector3.right;
 
     public Missile missilePrefab;
-    public int numberOfInvaders; 
+    public int numberOfInvaders;
 
     private void Awake()
     {
@@ -100,6 +100,7 @@ public class Invaders : MonoBehaviour
             if (invader.gameObject.activeSelf)
                 numberOfInvaders++;
         }
+
         return numberOfInvaders;
     }
 

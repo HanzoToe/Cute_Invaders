@@ -5,17 +5,16 @@ using UnityEngine;
 public class SugarRush : MonoBehaviour
 {
     private Player playerScript;
-    public Invaders invadersScript; 
-    public float startCharge = 0f;
-    public float maxCharge = 100;
+    public Invaders invadersScript;
+    private float startCharge = 0f;
+    private float maxCharge = 100;
 
-
-    private bool hasAddedCharge;
-    public bool isCharged = false; 
-
+    private bool hasAddedCharge = false;
+    private bool isCharged = false;
+    private int previousInvaderCount; // Track the previous invader count
 
     private float chargeAdded = 5f;
-    private float chargeRemoved = 10f; 
+    private float chargeRemoved = 20f;
 
 
     private void Awake()
@@ -27,7 +26,8 @@ public class SugarRush : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        // Initialize the previous invader count with the starting value
+        previousInvaderCount = invadersScript.GetInvaderCount();
     }
 
     // Update is called once per frame
@@ -40,18 +40,19 @@ public class SugarRush : MonoBehaviour
 
     void AddCharge()
     {
-        if(invadersScript.numberOfInvaders % 5 == 0 && !hasAddedCharge)
+
+        // Only add charge if the invader count has changed and is divisible by 5
+        if (invadersScript.numberOfInvaders != previousInvaderCount && invadersScript.numberOfInvaders % 5 == 0 && !hasAddedCharge)
         {
-            if(startCharge != maxCharge)
+            if (startCharge != maxCharge)
             {
                 startCharge += chargeAdded;
                 hasAddedCharge = true;
             }
-           
         }
-        else if(invadersScript.numberOfInvaders % 5 != 0 && hasAddedCharge)
+        else if (invadersScript.numberOfInvaders % 5 != 0 && hasAddedCharge)
         {
-            hasAddedCharge = false; 
+            hasAddedCharge = false;
         }
     }
 
@@ -60,18 +61,18 @@ public class SugarRush : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftShift) && startCharge > 0)
         {
             startCharge -= chargeRemoved * Time.deltaTime;
-            isCharged = true; 
+            isCharged = true;
         }
         else if (isCharged)
         {
             startCharge = Mathf.Round(startCharge);
-            isCharged = false;          
+            isCharged = false;
         }
     }
 
     void ChargeChecks()
     {
         if (startCharge < 0)
-            startCharge = 0; 
+            startCharge = 0;
     }
 }
