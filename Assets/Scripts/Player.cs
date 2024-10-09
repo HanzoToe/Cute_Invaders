@@ -8,18 +8,18 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public Laser laserPrefab;
+    public SugarRush sugarRushScript; 
     Laser laser;
-    float speed = 5f;
+    public float speed = 5f;
     public float timer = 0.5f;
-    float Orginaltime;
+    public float Orginaltime;
+
 
     private void Start()
     {
+        sugarRushScript = GetComponent<SugarRush>();
         Orginaltime = timer;  
     }
-
-
-
 
     // Update is called once per frame
     void Update()
@@ -48,7 +48,8 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.Space) && timer <= 0)
         {
             laser = Instantiate(laserPrefab, transform.position, Quaternion.identity);
-            timer = Orginaltime; 
+            timer = Orginaltime;
+             
         }
     }
 

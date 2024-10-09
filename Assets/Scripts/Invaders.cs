@@ -15,6 +15,7 @@ public class Invaders : MonoBehaviour
     private Vector3 direction = Vector3.right;
 
     public Missile missilePrefab;
+    public int numberOfInvaders;
 
     private void Awake()
     {
@@ -92,14 +93,15 @@ public class Invaders : MonoBehaviour
     //Kollar hur många invaders som lever
     public int GetInvaderCount()
     {
-        int nr = 0;
+        numberOfInvaders = 0;
 
         foreach(Transform invader in transform)
         {
             if (invader.gameObject.activeSelf)
-                nr++;
+                numberOfInvaders++;
         }
-        return nr;
+
+        return numberOfInvaders;
     }
 
     //Flyttar invaders åt sidan
