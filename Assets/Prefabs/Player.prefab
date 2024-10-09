@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6045716118296483286}
   - component: {fileID: 6896082081042039845}
   - component: {fileID: 8711208139004429193}
+  - component: {fileID: 7868781323836288526}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -172,3 +173,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   laserPrefab: {fileID: -8301603181750618243, guid: 6b57bd5e6bd0ffb4eabcd07e7e4acc45, type: 3}
+  sugarRushScript: {fileID: 0}
+  speed: 5
+  timer: 0.8
+  Orginaltime: 0
+--- !u!114 &7868781323836288526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3781116409724180716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 505b19a49b1241d45b7934c4b341df5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  invadersScript: {fileID: 0}
+  newTime: 0.18
