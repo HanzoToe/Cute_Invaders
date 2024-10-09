@@ -10,12 +10,13 @@ public class SugarRush : MonoBehaviour
     //Bools
     private bool hasAddedCharge = false; //Check if charge is added
     private bool isCharged = false;
-    private bool timerChanged = false; 
+    private bool timerChanged = false;
+    public bool sugarRushModeActive = false; 
    
     private int previousInvaderCount; // Track the previous invader count
 
 
-    private float startCharge = 0f;
+    public float startCharge = 30f;
     private float maxCharge = 30f;
 
     private float chargeAdded = 5f;
@@ -53,7 +54,7 @@ public class SugarRush : MonoBehaviour
     {
 
         // Only add charge if the invader count has changed and is divisible by 5
-        if (invadersScript.numberOfInvaders != previousInvaderCount && invadersScript.numberOfInvaders % 5 == 0 && !hasAddedCharge)
+        if (invadersScript.numberOfInvaders != previousInvaderCount && invadersScript.numberOfInvaders % 5 == 0 && !hasAddedCharge && !sugarRushModeActive)
         {
             if (startCharge != maxCharge)
             {
@@ -69,13 +70,17 @@ public class SugarRush : MonoBehaviour
 
     void SugarRushActivation()
     {
-        //If left shift is being held and the startcharge is greater than zero, allow "SugarRush" activation. 
-        if (Input.GetKey(KeyCode.LeftShift) && startCharge > 0)
+        //If left shift is pressed and the startcharge is greater than zero, allow "SugarRush" activation. 
+        if (Input.GetKeyDown(KeyCode.LeftShift) && startCharge == maxCharge)
         {
+            sugarRushModeActive = true;                   
+        }
 
+        if (sugarRushModeActive)
+        {
             startCharge -= chargeRemoved * Time.deltaTime;
             isCharged = true;
-            
+
             playerScript.speed = 12f;
 
             if (!timerChanged)
@@ -83,9 +88,13 @@ public class SugarRush : MonoBehaviour
                 timerChanged = true;
                 playerScript.Orginaltime = newTime;
             }
-             
+
+            if (startCharge <= 0)
+                sugarRushModeActive = false;
         }
-        else if (isCharged)
+        
+         
+        if (isCharged && !sugarRushModeActive)
         {
             startCharge = Mathf.Round(startCharge);
             isCharged = false;
