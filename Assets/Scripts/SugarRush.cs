@@ -10,10 +10,10 @@ public class SugarRush : MonoBehaviour
     //Bools
     private bool hasAddedCharge = false; //Check if charge is added
     private bool isCharged = false;
-    private bool timerChanged = false; 
+    private bool timerChanged = false;
+    private bool sugarRushModeActive = false; 
    
     private int previousInvaderCount; // Track the previous invader count
-
 
     private float startCharge = 0f;
     private float maxCharge = 30f;
@@ -23,7 +23,7 @@ public class SugarRush : MonoBehaviour
 
     private float originalPlayerSpeed;
     private float orifinalShootingSpeed;
-    public float newTime = 0.15f; 
+    private float newTime = 0.15f; 
 
 
     private void Awake()
@@ -44,60 +44,84 @@ public class SugarRush : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        SugarRushActivation();
+        SugarRushMode();
         AddCharge();
         ChargeChecks();
     }
 
     void AddCharge()
     {
+        bool invaderCountChanged = invadersScript.numberOfInvaders != previousInvaderCount; 
+        bool isDivisbleByFive = invadersScript.numberOfInvaders % 5 == 0;
+
 
         // Only add charge if the invader count has changed and is divisible by 5
-        if (invadersScript.numberOfInvaders != previousInvaderCount && invadersScript.numberOfInvaders % 5 == 0 && !hasAddedCharge)
+        if (invaderCountChanged && isDivisbleByFive && !hasAddedCharge && !sugarRushModeActive)
         {
-            if (startCharge != maxCharge)
+            if (startCharge < maxCharge)
             {
                 startCharge += chargeAdded;
                 hasAddedCharge = true;
             }
         }
-        else if (invadersScript.numberOfInvaders % 5 != 0 && hasAddedCharge)
+        else if (!isDivisbleByFive && hasAddedCharge)
         {
             hasAddedCharge = false;
         }
     }
 
-    void SugarRushActivation()
+    void SugarRushMode()
     {
-        //If left shift is being held and the startcharge is greater than zero, allow "SugarRush" activation. 
-        if (Input.GetKey(KeyCode.LeftShift) && startCharge > 0)
+        //If left shift is pressed and the startcharge is greater than zero, allow "SugarRush" activation. 
+        if (Input.GetKeyDown(KeyCode.LeftShift) && startCharge == maxCharge)
         {
-
-            startCharge -= chargeRemoved * Time.deltaTime;
-            isCharged = true;
-            
-            playerScript.speed = 12f;
-
-            if (!timerChanged)
-            {
-                timerChanged = true;
-                playerScript.Orginaltime = newTime;
-            }
-             
+            ActivateSugarRush();                 
+        } 
+       
+        if (sugarRushModeActive)
+        {
+            HandleSugarRush();
         }
-        else if (isCharged)
+        else if(isCharged && !sugarRushModeActive)
         {
-            startCharge = Mathf.Round(startCharge);
-            isCharged = false;
-            timerChanged = false;
-            playerScript.speed = originalPlayerSpeed;
-            playerScript.Orginaltime = orifinalShootingSpeed;
+            ResetSugarRush();
         }
     }
 
+    void ActivateSugarRush()
+    {
+        sugarRushModeActive = true;
+
+        playerScript.speed = 12f;
+
+        if (!timerChanged)
+        {
+            timerChanged = true;
+            playerScript.Orginaltime = newTime;
+        }
+    }
+
+    void HandleSugarRush()
+    {
+        startCharge -= chargeRemoved * Time.deltaTime;
+        isCharged = true;
+
+        if (startCharge <= 0)
+            sugarRushModeActive = false;
+    }
+
+    void ResetSugarRush()
+    {
+        startCharge = Mathf.Round(startCharge);
+        isCharged = false;
+        timerChanged = false;
+        playerScript.speed = originalPlayerSpeed;
+        playerScript.Orginaltime = orifinalShootingSpeed;
+    }
+
+
     void ChargeChecks()
     {
-        if (startCharge < 0)
-            startCharge = 0;
+        startCharge = Mathf.Max(0, startCharge);
     }
 }
