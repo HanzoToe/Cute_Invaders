@@ -6,8 +6,10 @@ using Cinemachine;
 public class CameraShake : MonoBehaviour
 {
     private CinemachineVirtualCamera cinemachineVirtualCamera;
-    private float ShakeIntensity = 8f;
-    private float ShakeTime = 0.2f;
+    [SerializeField]
+    private float ShakeIntensity = 0.5f;
+    [SerializeField]
+    private float ShakeTime = 0.5f;
 
     private float timer;
     private CinemachineBasicMultiChannelPerlin _cbmcp;
