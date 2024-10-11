@@ -10,6 +10,8 @@ public class SugarRushBar : MonoBehaviour
     SpriteRenderer spRend;
     int animationFrame;
 
+    public bool hasAddedBar = false; 
+
     private void Awake()
     {
         spRend = GetComponent<SpriteRenderer>();
@@ -18,7 +20,7 @@ public class SugarRushBar : MonoBehaviour
 
     public void Charge_Bar()
     {
-        animationFrame++;
+        animationFrame += 2;
         if (animationFrame >= animationSprites.Length)
         {
             animationFrame = 0;
@@ -35,9 +37,6 @@ public class SugarRushBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            Charge_Bar();
-        }
+
     }
 }
