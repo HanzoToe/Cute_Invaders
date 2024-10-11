@@ -271,8 +271,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34216cb19369eb9458d8e405166dd8b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ShakeIntensity: 1
+  ShakeIntensity: 0.3
   ShakeTime: 0.2
+  sugarRushShakeIntesnity: 1
 --- !u!114 &450267494
 MonoBehaviour:
   m_ObjectHideFlags: 0

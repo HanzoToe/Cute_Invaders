@@ -11,7 +11,7 @@ public class SugarRush : MonoBehaviour
     private bool hasAddedCharge = false; //Check if charge is added
     private bool isCharged = false;
     private bool timerChanged = false;
-    private bool sugarRushModeActive = false; 
+    public bool sugarRushModeActive = false; 
    
     private int previousInvaderCount; // Track the previous invader count
 
