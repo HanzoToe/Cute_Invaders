@@ -28,17 +28,17 @@ public class Softbody : MonoBehaviour
             Vector2 towardsCenter = (Vector2.zero - vertex).normalized;
 
             float colliderRadius = points[i].gameObject.GetComponent<CircleCollider2D>().radius;
+            spriteShape.spline.SetPosition(i, (vertex - towardsCenter * (colliderRadius * 0.5f)));
 
-            try
-            {
-                spriteShape.spline.SetPosition(i, (vertex - towardsCenter * colliderRadius));
-            }
-            catch
-            {
-                Debug.Log("Spline points are too close to each other.. recalculate");
-                spriteShape.spline.SetPosition(i, (vertex - towardsCenter * colliderRadius));
-            }
+            Vector2 lt = spriteShape.spline.GetLeftTangent(i);
+
+            Vector2 newRt = Vector2.Perpendicular(towardsCenter) * lt.magnitude;
+            Vector2 newLt = Vector2.zero - (newRt);
+
+            spriteShape.spline.SetRightTangent(i, newLt);
+            spriteShape.spline.SetLeftTangent(i, newRt);
         }
+
     }
 
 }
