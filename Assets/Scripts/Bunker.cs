@@ -6,7 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))]
 public class Bunker : MonoBehaviour
 {
-    int nrOfHits = 0;
+    public int nrOfHits = 0;
     SpriteRenderer spRend;
     private void Awake()
     {
@@ -38,5 +38,6 @@ public class Bunker : MonoBehaviour
     public void ResetBunker()
     {
         gameObject.SetActive(true);
+        nrOfHits = 0; 
     }
 }
