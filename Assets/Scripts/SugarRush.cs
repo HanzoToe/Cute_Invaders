@@ -11,14 +11,14 @@ public class SugarRush : MonoBehaviour
     private bool hasAddedCharge = false; //Check if charge is added
     private bool isCharged = false;
     private bool timerChanged = false;
-    private bool sugarRushModeActive = false; 
+    public bool sugarRushModeActive = false; 
    
     private int previousInvaderCount; // Track the previous invader count
 
     private float startCharge = 0f;
-    private float maxCharge = 30f;
+    private float maxCharge = 50f;
 
-    private float chargeAdded = 5f;
+    private float chargeAdded = 2f;
     private float chargeRemoved = 7f;
 
     private float originalPlayerSpeed;
@@ -52,11 +52,11 @@ public class SugarRush : MonoBehaviour
     void AddCharge()
     {
         bool invaderCountChanged = invadersScript.numberOfInvaders != previousInvaderCount; 
-        bool isDivisbleByFive = invadersScript.numberOfInvaders % 5 == 0;
+        bool isDivisbleByTwo = invadersScript.numberOfInvaders % 2 == 0;
 
 
         // Only add charge if the invader count has changed and is divisible by 5
-        if (invaderCountChanged && isDivisbleByFive && !hasAddedCharge && !sugarRushModeActive)
+        if (invaderCountChanged && isDivisbleByTwo && !hasAddedCharge && !sugarRushModeActive)
         {
             if (startCharge < maxCharge)
             {
@@ -64,7 +64,7 @@ public class SugarRush : MonoBehaviour
                 hasAddedCharge = true;
             }
         }
-        else if (!isDivisbleByFive && hasAddedCharge)
+        else if (!isDivisbleByTwo && hasAddedCharge)
         {
             hasAddedCharge = false;
         }
