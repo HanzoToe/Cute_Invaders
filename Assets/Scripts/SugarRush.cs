@@ -16,7 +16,7 @@ public class SugarRush : MonoBehaviour
    
     private int previousInvaderCount; // Track the previous invader count
 
-    public float startCharge = 0f;
+    private float startCharge = 0f;
     private float maxCharge = 50f;
 
     private float chargeAdded = 2f;
