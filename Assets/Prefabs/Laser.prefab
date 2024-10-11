@@ -216,7 +216,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Time: 1
+  m_Time: 0.75
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
@@ -225,23 +225,59 @@ TrailRenderer:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.0064735413
-        value: 0.7750988
-        inSlope: 0
-        outSlope: 0
+        time: 0.100227356
+        value: 0.4709301
+        inSlope: 1.2827061
+        outSlope: 1.2827061
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
-        outWeight: 0.33333334
+        outWeight: 0.38332236
       - serializedVersion: 3
-        time: 1
-        value: 0
-        inSlope: -0.35969642
-        outSlope: -0.35969642
+        time: 0.20077835
+        value: 0.76310325
+        inSlope: 2.1432312
+        outSlope: 2.1432312
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0.26185864
+        inWeight: 0.33333334
+        outWeight: 0.42563152
+      - serializedVersion: 3
+        time: 0.39583838
+        value: 1
+        inSlope: 0.0797315
+        outSlope: 0.0797315
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.49334553
+        outWeight: 0.49038476
+      - serializedVersion: 3
+        time: 0.71095777
+        value: 0.534894
+        inSlope: -3.7463248
+        outSlope: -3.7463248
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.42431027
         outWeight: 0
+      - serializedVersion: 3
+        time: 0.783844
+        value: 0.22093189
+        inSlope: -2.184196
+        outSlope: -2.184196
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 1
+        outWeight: 1
+      - serializedVersion: 3
+        time: 0.90629077
+        value: 0.0058196336
+        inSlope: -0.73112065
+        outSlope: -0.73112065
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 1
+        outWeight: 1
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
