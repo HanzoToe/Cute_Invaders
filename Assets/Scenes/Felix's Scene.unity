@@ -617,6 +617,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SugarRushChargeBar
       objectReference: {fileID: 0}
+    - target: {fileID: 7162065194258864616, guid: 6e67fbd4c86258b429be37b01a44ecb7, type: 3}
+      propertyPath: animationSprites.Array.size
+      value: 51
+      objectReference: {fileID: 0}
+    - target: {fileID: 7162065194258864616, guid: 6e67fbd4c86258b429be37b01a44ecb7, type: 3}
+      propertyPath: animationSprites.Array.data[50]
+      value: 
+      objectReference: {fileID: -1835945679, guid: f86158c55eb328f47a10677fbd5a328a, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

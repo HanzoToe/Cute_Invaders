@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class SugarRushBar : MonoBehaviour
 {
@@ -23,10 +25,25 @@ public class SugarRushBar : MonoBehaviour
         animationFrame += 2;
         if (animationFrame >= animationSprites.Length)
         {
-            animationFrame = 0;
+            animationFrame = animationSprites.Length - 2;
         }
         spRend.sprite = animationSprites[animationFrame];
     }
+
+    public void RemoveBar()
+    {
+        float animationSpeed = 2f;
+
+        animationFrame -= (int)(animationSpeed * Time.deltaTime * animationSprites.Length);
+
+        if (animationFrame < 0)
+        {
+            animationFrame = 0;
+        }
+          
+        spRend.sprite = animationSprites[animationFrame];
+    }
+
 
     // Start is called before the first frame update
     void Start()

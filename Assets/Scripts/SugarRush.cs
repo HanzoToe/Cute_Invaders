@@ -16,7 +16,7 @@ public class SugarRush : MonoBehaviour
    
     private int previousInvaderCount; // Track the previous invader count
 
-    private float startCharge = 0f;
+    public float startCharge = 0f;
     private float maxCharge = 50f;
 
     private float chargeAdded = 2f;
@@ -49,6 +49,7 @@ public class SugarRush : MonoBehaviour
         SugarRushMode();
         AddCharge();
         ChargeChecks();
+        HandleChargeBar();
     }
 
     void AddCharge()
@@ -93,8 +94,7 @@ public class SugarRush : MonoBehaviour
 
     void ActivateSugarRush()
     {
-        sugarRushModeActive = true;
-
+        sugarRushModeActive = true; 
         playerScript.speed = 12f;
 
         if (!timerChanged)
@@ -103,6 +103,13 @@ public class SugarRush : MonoBehaviour
             playerScript.Orginaltime = newTime;
         }
     }
+
+    void HandleChargeBar()
+    {
+        if(sugarRushModeActive)
+            sugarRushBarScript.RemoveBar();        
+    }
+
 
     void HandleSugarRush()
     {
