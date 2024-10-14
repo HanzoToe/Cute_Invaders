@@ -26,8 +26,13 @@ public class AudioManagerScript : MonoBehaviour
 
     private void Start()
     {
-        
-        PlayMusic("Theme1");
+      
+            PlayMusic("Theme1");
+
+        if (Input.GetKey(KeyCode.Space))
+        {
+            PlaySFX("Shoot1");
+        }
     }
     public void PlayMusic(string name)
     {
