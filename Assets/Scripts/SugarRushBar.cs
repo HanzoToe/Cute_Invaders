@@ -12,11 +12,13 @@ public class SugarRushBar : MonoBehaviour
     SpriteRenderer spRend;
     int animationFrame;
 
-    public bool hasAddedBar = false; 
+    public bool hasAddedBar = false;
+    SugarRush sugarRushScript; 
 
     private void Awake()
     {
         spRend = GetComponent<SpriteRenderer>();
+        sugarRushScript = GameObject.Find("Player").GetComponent<SugarRush>();
         spRend.sprite = animationSprites[0];
     }
 
@@ -32,11 +34,10 @@ public class SugarRushBar : MonoBehaviour
 
     public void RemoveBar()
     {
-        float animationSpeed = 2f;
 
-        animationFrame -= (int)(animationSpeed * Time.deltaTime * animationSprites.Length);
+        animationFrame = (Mathf.RoundToInt(sugarRushScript.startCharge));
 
-        if (animationFrame < 0)
+        if (animationFrame <= 0)
         {
             animationFrame = 0;
         }
