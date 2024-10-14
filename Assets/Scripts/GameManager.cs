@@ -61,8 +61,11 @@ public class GameManager : MonoBehaviour
             NewGame();
         }
         else if (lives <= 0)
+        {
             GameOver();
 
+        }
+            
         if (playerDead)
         {
             StartCoroutine("Respawn");
