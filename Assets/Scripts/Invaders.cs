@@ -6,6 +6,9 @@ using UnityEngine;
 
 public class Invaders : MonoBehaviour
 {
+    public GameObject LeftEdge;
+    public GameObject RightEdge;
+
     public Invader[] prefab = new Invader[5];
 
     private int row = 5;
@@ -110,8 +113,8 @@ public class Invaders : MonoBehaviour
         float speed = 1f;
         transform.position += speed * Time.deltaTime * direction;
 
-        Vector3 leftEdge = Camera.main.ViewportToWorldPoint(Vector3.zero);
-        Vector3 rightEdge = Camera.main.ViewportToWorldPoint(Vector3.right);
+        Vector3 leftEdge = LeftEdge.transform.position;
+        Vector3 rightEdge = RightEdge.transform.position;
 
         foreach (Transform invader in transform)
         {
