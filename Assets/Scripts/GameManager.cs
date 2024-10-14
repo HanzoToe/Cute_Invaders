@@ -68,7 +68,6 @@ public class GameManager : MonoBehaviour
             StartCoroutine("Respawn");
         }
 
-        Debug.Log(lives);
     }
 
     private void NewGame()
