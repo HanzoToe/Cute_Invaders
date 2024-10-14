@@ -16,11 +16,14 @@ public class Player : MonoBehaviour
     public float timer = 0.5f;
     public float Orginaltime;
 
-
+    AudioManagerScript AudioManagerScript;
     private void Start()
     {
         sugarRushScript = GetComponent<SugarRush>();
-        Orginaltime = timer;  
+        Orginaltime = timer;
+
+        AudioManagerScript = GameObject.Find("AudioManager").GetComponent<AudioManagerScript>();
+        //-Love
     }
 
     // Update is called once per frame
@@ -44,14 +47,17 @@ public class Player : MonoBehaviour
 
         transform.position = position;
 
-        
-        timer -= Time.deltaTime; 
+
+        timer -= Time.deltaTime;
 
         if (Input.GetKey(KeyCode.Space) && timer <= 0)
         {
             laser = Instantiate(laserPrefab, transform.position, Quaternion.identity);
             timer = Orginaltime;
-             
+
+            AudioManagerScript.Instance.PlaySFX("Shoot1");
+            //Sound effects -Love
+
         }
     }
 

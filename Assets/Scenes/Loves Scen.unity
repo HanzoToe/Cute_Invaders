@@ -542,13 +542,13 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.16
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 117
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -676,7 +676,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 165
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -714,7 +714,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 0.708
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -858,8 +858,10 @@ MonoBehaviour:
   Instance: {fileID: 0}
   musicSounds:
   - name: Theme1
-    clip: {fileID: 8300000, guid: 0aed996fa9df7e84cb39bda8ae4412e2, type: 3}
-  sfxSounds: []
+    clip: {fileID: 8300000, guid: 4ee8e4869dcd51d48a5834898b9189b5, type: 3}
+  sfxSounds:
+  - name: Shoot1
+    clip: {fileID: 8300000, guid: 42769b6d2c937514486471255c78e8f3, type: 3}
   musicSource: {fileID: 1077121031}
   sfxSource: {fileID: 1149501776}
 --- !u!4 &1699064187
