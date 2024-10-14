@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Timeline.Actions;
+using System.Threading;
 
 [DefaultExecutionOrder(-1)]
 public class GameManager : MonoBehaviour
@@ -13,12 +14,18 @@ public class GameManager : MonoBehaviour
     private MysteryShip mysteryShip;
     private Bunker[] bunkers;
 
+    private float respawnTimer = 0.5f;
+
+    private bool playerDead = false; 
+
     //Används ej just nu, men ni kan använda de senare
     public int score { get; private set; } = 0;
-    public int lives { get; private set; } = 3;
+    public int lives { get; private set; } = 0;
 
     private void Awake()
     {
+
+
         if (Instance != null)
         {
             Destroy(gameObject);
@@ -53,6 +60,18 @@ public class GameManager : MonoBehaviour
         {
             NewGame();
         }
+        else if (lives <= 0)
+        {
+            GameOver();
+
+        }
+            
+        if (playerDead)
+        {
+            StartCoroutine("Respawn");
+        }
+
+        Debug.Log(lives);
     }
 
     private void NewGame()
@@ -67,6 +86,7 @@ public class GameManager : MonoBehaviour
     {
         invaders.ResetInvaders();
         invaders.gameObject.SetActive(true);
+        mysteryShip.gameObject.SetActive(true);
 
         for (int i = 0; i < bunkers.Length; i++)
         {
@@ -76,17 +96,11 @@ public class GameManager : MonoBehaviour
         Respawn();
     }
 
-    private void Respawn()
-    {
-        Vector3 position = player.transform.position;
-        position.x = 0f;
-        player.transform.position = position;
-        player.gameObject.SetActive(true);
-    }
 
     private void GameOver()
     {
         invaders.gameObject.SetActive(false);
+        mysteryShip.gameObject.SetActive(false);      
     }
 
     private void SetScore(int score)
@@ -94,15 +108,35 @@ public class GameManager : MonoBehaviour
         
     }
 
-    private void SetLives(int lives)
+    private void SetLives(int _lives)
     {
-       
+        lives = _lives;
     }
 
     public void OnPlayerKilled(Player player)
     {
+        playerDead = true; 
 
         player.gameObject.SetActive(false);
+        lives--;
+        StartCoroutine("Respawn");
+    }
+
+
+    IEnumerator Respawn()
+    {
+        yield return new WaitForSeconds(respawnTimer);
+
+        if (lives > 0)
+        {            
+            Vector3 position = player.transform.position;
+            position.x = 0f;
+            player.transform.position = position;
+            player.gameObject.SetActive(true);
+            playerDead = false; 
+        }
+
+        yield return null; 
 
     }
 

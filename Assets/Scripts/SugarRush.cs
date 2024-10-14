@@ -6,6 +6,7 @@ public class SugarRush : MonoBehaviour
 {
     private Player playerScript;
     public Invaders invadersScript;
+    private SugarRushBar sugarRushBarScript; 
   
     //Bools
     private bool hasAddedCharge = false; //Check if charge is added
@@ -15,7 +16,7 @@ public class SugarRush : MonoBehaviour
    
     private int previousInvaderCount; // Track the previous invader count
 
-    private float startCharge = 0f;
+    public float startCharge = 0f;
     private float maxCharge = 50f;
 
     private float chargeAdded = 2f;
@@ -31,7 +32,8 @@ public class SugarRush : MonoBehaviour
         playerScript = GetComponent<Player>();
         invadersScript = GameObject.Find("EnemySpawner").GetComponent<Invaders>();
         originalPlayerSpeed = playerScript.speed;
-        orifinalShootingSpeed = playerScript.timer; 
+        orifinalShootingSpeed = playerScript.timer;
+        sugarRushBarScript = GameObject.Find("SugarRushChargeBar").GetComponent<SugarRushBar>();
     }
 
     // Start is called before the first frame update
@@ -47,6 +49,7 @@ public class SugarRush : MonoBehaviour
         SugarRushMode();
         AddCharge();
         ChargeChecks();
+        HandleChargeBar();
     }
 
     void AddCharge()
@@ -60,6 +63,7 @@ public class SugarRush : MonoBehaviour
         {
             if (startCharge < maxCharge)
             {
+                sugarRushBarScript.Charge_Bar();
                 startCharge += chargeAdded;
                 hasAddedCharge = true;
             }
@@ -90,8 +94,7 @@ public class SugarRush : MonoBehaviour
 
     void ActivateSugarRush()
     {
-        sugarRushModeActive = true;
-
+        sugarRushModeActive = true; 
         playerScript.speed = 12f;
 
         if (!timerChanged)
@@ -100,6 +103,13 @@ public class SugarRush : MonoBehaviour
             playerScript.Orginaltime = newTime;
         }
     }
+
+    void HandleChargeBar()
+    {
+        if(sugarRushModeActive)
+            sugarRushBarScript.RemoveBar();        
+    }
+
 
     void HandleSugarRush()
     {

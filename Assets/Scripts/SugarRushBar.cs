@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class SugarRushBar : MonoBehaviour
 {
@@ -10,6 +12,8 @@ public class SugarRushBar : MonoBehaviour
     SpriteRenderer spRend;
     int animationFrame;
 
+    public bool hasAddedBar = false; 
+
     private void Awake()
     {
         spRend = GetComponent<SpriteRenderer>();
@@ -18,13 +22,28 @@ public class SugarRushBar : MonoBehaviour
 
     public void Charge_Bar()
     {
-        animationFrame++;
+        animationFrame += 2;
         if (animationFrame >= animationSprites.Length)
         {
-            animationFrame = 0;
+            animationFrame = animationSprites.Length - 2;
         }
         spRend.sprite = animationSprites[animationFrame];
     }
+
+    public void RemoveBar()
+    {
+        float animationSpeed = 2f;
+
+        animationFrame -= (int)(animationSpeed * Time.deltaTime * animationSprites.Length);
+
+        if (animationFrame < 0)
+        {
+            animationFrame = 0;
+        }
+          
+        spRend.sprite = animationSprites[animationFrame];
+    }
+
 
     // Start is called before the first frame update
     void Start()
@@ -35,9 +54,6 @@ public class SugarRushBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            Charge_Bar();
-        }
+
     }
 }
