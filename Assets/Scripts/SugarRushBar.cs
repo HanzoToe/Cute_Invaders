@@ -24,7 +24,7 @@ public class SugarRushBar : MonoBehaviour
 
     public void Charge_Bar()
     {
-        animationFrame += 2;
+        animationFrame = Mathf.RoundToInt(sugarRushScript.startCharge);
         if (animationFrame >= animationSprites.Length)
         {
             animationFrame = animationSprites.Length - 2;
@@ -35,7 +35,7 @@ public class SugarRushBar : MonoBehaviour
     public void RemoveBar()
     {
 
-        animationFrame = (Mathf.RoundToInt(sugarRushScript.startCharge));
+        animationFrame = Mathf.RoundToInt(sugarRushScript.startCharge);
 
         if (animationFrame <= 0)
         {
