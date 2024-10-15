@@ -1,16 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Timeline;
 using UnityEngine;
 
-[RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(BoxCollider2D))]
 public class Bunker : MonoBehaviour
 {
     public int nrOfHits = 0;
-    SpriteRenderer spRend;
+    public List<Transform> Child = new List<Transform>();
     private void Awake()
     {
-        spRend = GetComponent<SpriteRenderer>();
+        Child = new List<Transform>(GetComponentsInChildren<Transform>());
+        Child.RemoveAt(0);
+        int lastIndex = Child.Count - 1;
+        Child.RemoveAt(lastIndex);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -19,17 +22,19 @@ public class Bunker : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("Missile") || other.gameObject.layer == LayerMask.NameToLayer("Invader"))
         {
 
-            //Ändrar färgen beroende på antal träffar.
-            nrOfHits++;
-            Color oldColor = spRend.color;
 
-            Color newColor = new Color(oldColor.r +(nrOfHits*0.1f), oldColor.g + (nrOfHits * 0.1f), oldColor.b + (nrOfHits * 0.1f));
-            
-            spRend.color = newColor;
-            
+            nrOfHits++;
             if (nrOfHits == 4)
             {
-                gameObject.SetActive(false);
+                transform.gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
+                foreach(Transform childTransform in Child)
+                {
+                    childTransform.gameObject.GetComponent<SpringJoint2D>().enabled = false;
+                    childTransform.gameObject.GetComponent<DistanceJoint2D>().enabled = false;
+
+                    Rigidbody2D pointRB = childTransform.gameObject.GetComponent<Rigidbody2D>();
+                    pointRB.velocity = new Vector2(0,-1);
+                }
             }
             
         }
