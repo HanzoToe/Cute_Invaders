@@ -34,7 +34,6 @@ public class SugarRushBar : MonoBehaviour
 
     public void RemoveBar()
     {
-
         animationFrame = Mathf.RoundToInt(sugarRushScript.startCharge);
 
         if (animationFrame <= 0)

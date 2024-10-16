@@ -5,6 +5,9 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))]
 public class MysteryShip : MonoBehaviour
 {
+    public GameObject LeftEdge;
+    public GameObject RightEdge;
+
     float speed = 5f;
     float cycleTime = 5f;
 
@@ -16,12 +19,12 @@ public class MysteryShip : MonoBehaviour
     
     void Start()
     {
-        Vector3 leftEdge = Camera.main.ViewportToWorldPoint(Vector3.zero);
-        Vector3 rightEdge = Camera.main.ViewportToWorldPoint(Vector3.right);
+        Vector3 leftEdge = LeftEdge.transform.position;
+        Vector3 rightEdge = RightEdge.transform.position;
 
         //positionen där den kommer stanna utanför skärmen.
-        leftDestination = new Vector2(leftEdge.x - 1f, transform.position.y);
-        rightDestination = new Vector2(rightEdge.x + 1f, transform.position.y);
+        leftDestination = new Vector2(leftEdge.x - 2f, transform.position.y);
+        rightDestination = new Vector2(rightEdge.x + 2f, transform.position.y);
 
         SetInvisible();
     }

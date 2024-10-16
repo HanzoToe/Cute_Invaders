@@ -78,7 +78,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 707120ae2730b924aaff2a0276e3e050, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -195,7 +195,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 10308, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -225,8 +225,17 @@ TrailRenderer:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.100227356
-        value: 0.4709301
+        time: 0
+        value: 0.44767192
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 0.10282898
+        value: 0.3604641
         inSlope: 1.2827061
         outSlope: 1.2827061
         tangentMode: 0
@@ -270,8 +279,8 @@ TrailRenderer:
         inWeight: 1
         outWeight: 1
       - serializedVersion: 3
-        time: 0.90629077
-        value: 0.0058196336
+        time: 1
+        value: 0
         inSlope: -0.73112065
         outSlope: -0.73112065
         tangentMode: 0

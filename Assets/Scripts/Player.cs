@@ -7,6 +7,8 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))]
 public class Player : MonoBehaviour
 {
+    public GameObject LeftEdge;
+    public GameObject RightEdge;
     public Laser laserPrefab;
     public SugarRush sugarRushScript; 
     Laser laser;
@@ -14,11 +16,14 @@ public class Player : MonoBehaviour
     public float timer = 0.5f;
     public float Orginaltime;
 
-
+    AudioManagerScript AudioManagerScript;
     private void Start()
     {
         sugarRushScript = GetComponent<SugarRush>();
-        Orginaltime = timer;  
+        Orginaltime = timer;
+
+        AudioManagerScript = GameObject.Find("AudioManager").GetComponent<AudioManagerScript>();
+        //-Love
     }
 
     // Update is called once per frame
@@ -35,21 +40,24 @@ public class Player : MonoBehaviour
             position.x += speed * Time.deltaTime;
         }
 
-        Vector3 leftEdge = Camera.main.ViewportToWorldPoint(Vector3.zero);
-        Vector3 rightEdge = Camera.main.ViewportToWorldPoint(Vector3.right);
+        Vector3 leftEdge = LeftEdge.transform.position;
+        Vector3 rightEdge = RightEdge.transform.position;
 
         position.x = Mathf.Clamp(position.x, leftEdge.x, rightEdge.x);
 
         transform.position = position;
 
-        
-        timer -= Time.deltaTime; 
+
+        timer -= Time.deltaTime;
 
         if (Input.GetKey(KeyCode.Space) && timer <= 0)
         {
             laser = Instantiate(laserPrefab, transform.position, Quaternion.identity);
             timer = Orginaltime;
-             
+
+            AudioManagerScript.Instance.PlaySFX("Shoot1");
+            //Sound effects -Love
+
         }
     }
 
