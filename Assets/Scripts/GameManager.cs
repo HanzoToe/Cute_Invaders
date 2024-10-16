@@ -9,7 +9,8 @@ public class GameManager : MonoBehaviour
 {
     public GameObject DeathScreen;
 
-    private SugarRush sugarRushScript; 
+    private SugarRush sugarRushScript;
+    private SugarRushBar sugarRushBar; 
     public static GameManager Instance { get; private set; }
 
     private Player player;
@@ -53,6 +54,7 @@ public class GameManager : MonoBehaviour
         mysteryShip = FindObjectOfType<MysteryShip>();
         bunkers = FindObjectsOfType<Bunker>();
         sugarRushScript = FindObjectOfType<SugarRush>();
+        sugarRushBar = FindObjectOfType<SugarRushBar>();
 
         NewGame();
     }
@@ -79,7 +81,8 @@ public class GameManager : MonoBehaviour
         SetLives(3);
         NewRound();
         DeathScreen.SetActive(false);
-        sugarRushScript.startCharge = 0; 
+        sugarRushScript.startCharge = 0;
+        sugarRushBar.RemoveBar();
     }
 
     private void NewRound()
