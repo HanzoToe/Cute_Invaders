@@ -559,7 +559,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34216cb19369eb9458d8e405166dd8b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ShakeIntensity: 2
+  ShakeIntensity: 1
   ShakeTime: 0.2
   sugarRushShakeIntesnity: 5
 --- !u!114 &450267494
