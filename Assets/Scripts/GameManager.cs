@@ -8,6 +8,8 @@ using System.Threading;
 public class GameManager : MonoBehaviour
 {
     public GameObject DeathScreen;
+
+    private SugarRush sugarRushScript; 
     public static GameManager Instance { get; private set; }
 
     private Player player;
@@ -19,7 +21,6 @@ public class GameManager : MonoBehaviour
 
     private bool playerDead = false; 
 
-    //Används ej just nu, men ni kan använda de senare
     public int score { get; private set; } = 0;
     public int lives { get; private set; } = 0;
 
@@ -51,6 +52,7 @@ public class GameManager : MonoBehaviour
         invaders = FindObjectOfType<Invaders>();
         mysteryShip = FindObjectOfType<MysteryShip>();
         bunkers = FindObjectsOfType<Bunker>();
+        sugarRushScript = FindObjectOfType<SugarRush>();
 
         NewGame();
     }
@@ -77,6 +79,7 @@ public class GameManager : MonoBehaviour
         SetLives(3);
         NewRound();
         DeathScreen.SetActive(false);
+        sugarRushScript.startCharge = 0; 
     }
 
     private void NewRound()
