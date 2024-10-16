@@ -17,12 +17,13 @@ public class Player : MonoBehaviour
     public float Orginaltime;
 
     AudioManagerScript AudioManagerScript;
+
     private void Start()
     {
         sugarRushScript = GetComponent<SugarRush>();
         Orginaltime = timer;
-
         AudioManagerScript = GameObject.Find("AudioManager").GetComponent<AudioManagerScript>();
+
         //-Love
     }
 

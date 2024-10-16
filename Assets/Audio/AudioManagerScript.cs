@@ -29,10 +29,7 @@ public class AudioManagerScript : MonoBehaviour
       
             PlayMusic("Theme1");
 
-        if (Input.GetKey(KeyCode.Space))
-        {
-            PlaySFX("Shoot1");
-        }
+      
     }
     public void PlayMusic(string name)
     {
@@ -63,6 +60,23 @@ public class AudioManagerScript : MonoBehaviour
         {
             sfxSource.PlayOneShot(s.clip);
         }
+    }
+
+    public void Togglemusic()
+    {
+        musicSource.mute = !musicSource.mute;
+    }
+    public void Togglesfx()
+    {
+        sfxSource.mute = !sfxSource.mute;
+    }
+    public void MusicVolume(float volume)
+    {
+        musicSource.volume = volume;
+    }
+    public void SFXVolume(float volume)
+    {
+        sfxSource.volume = volume;
     }
 }
     
