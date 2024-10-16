@@ -7,6 +7,7 @@ using System.Threading;
 [DefaultExecutionOrder(-1)]
 public class GameManager : MonoBehaviour
 {
+    public GameObject DeathScreen;
     public static GameManager Instance { get; private set; }
 
     private Player player;
@@ -56,11 +57,8 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (lives <= 0 && Input.GetKeyDown(KeyCode.Return))
-        {
-            NewGame();
-        }
-        else if (lives <= 0)
+        
+        if (lives <= 0)
         {
             GameOver();
 
@@ -73,12 +71,12 @@ public class GameManager : MonoBehaviour
 
     }
 
-    private void NewGame()
+    public void NewGame()
     {
-
         SetScore(0);
         SetLives(3);
         NewRound();
+        DeathScreen.SetActive(false);
     }
 
     private void NewRound()
@@ -99,7 +97,8 @@ public class GameManager : MonoBehaviour
     private void GameOver()
     {
         invaders.gameObject.SetActive(false);
-        mysteryShip.gameObject.SetActive(false);      
+        mysteryShip.gameObject.SetActive(false);
+        DeathScreen.SetActive(true);
     }
 
     private void SetScore(int score)
@@ -115,10 +114,9 @@ public class GameManager : MonoBehaviour
     public void OnPlayerKilled(Player player)
     {
         playerDead = true; 
-
         player.gameObject.SetActive(false);
         lives--;
-        StartCoroutine("Respawn");
+        
     }
 
 
@@ -164,5 +162,4 @@ public class GameManager : MonoBehaviour
             OnPlayerKilled(player);
         }
     }
-
 }
