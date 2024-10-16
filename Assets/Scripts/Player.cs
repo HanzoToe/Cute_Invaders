@@ -53,7 +53,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Space) && timer <= 0)
         {
-            laser = Instantiate(laserPrefab, transform.position, Quaternion.identity);
+            laser = Instantiate(laserPrefab, transform.position + new Vector3(0, 1), Quaternion.identity);
             timer = Orginaltime;
 
             AudioManagerScript.Instance.PlaySFX("Shoot1");
