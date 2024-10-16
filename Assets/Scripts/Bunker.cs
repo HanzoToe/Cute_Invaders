@@ -33,7 +33,7 @@ public class Bunker : MonoBehaviour
                     childTransform.gameObject.GetComponent<DistanceJoint2D>().enabled = false;
 
                     Rigidbody2D pointRB = childTransform.gameObject.GetComponent<Rigidbody2D>();
-                    pointRB.velocity = new Vector2(0,-10);
+                    pointRB.velocity = new Vector2(transform.position - childTransform.,);
                 }
             }
             
