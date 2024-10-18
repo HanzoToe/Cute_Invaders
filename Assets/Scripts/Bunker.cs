@@ -29,7 +29,7 @@ public class Bunker : MonoBehaviour
 
 
             nrOfHits++;
-            if (nrOfHits == 4)
+            if (nrOfHits >= 4)
             {
                 transform.gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
                 foreach(Transform childTransform in Child)
@@ -53,7 +53,7 @@ public class Bunker : MonoBehaviour
         nrOfHits = 0; 
     }
 
-    IEnumerator DestroyBunker ()
+    private void DestroyBunker()
     {
         Color originalColor = sSRender.color;
         float elapsedTime = 0f;
@@ -62,7 +62,6 @@ public class Bunker : MonoBehaviour
             elapsedTime += Time.deltaTime;
             float newAlpha = Mathf.Lerp(originalColor.a, 0, elapsedTime / fadeDuration);
             sSRender.color = new Color(originalColor.r, originalColor.g, originalColor.b, newAlpha);
-            yield return null;
         }
 
         sSRender.color = new Color(originalColor.r, originalColor.g, originalColor.b, 0);
