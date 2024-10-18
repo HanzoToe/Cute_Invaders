@@ -9,7 +9,8 @@ public class CuteBossEye : BossesScript
 {
     GameObject bullet;
 
-    Transform bulletSpawnPoint; 
+    Transform bulletSpawnPoint;
+    Transform playerPosition; 
 
     bool halfHp = false;
 
@@ -38,7 +39,11 @@ public class CuteBossEye : BossesScript
 
     void Dash()
     {
-        
+        Vector2 _playerPosition = playerPosition.transform.position;
+        Vector2 _bossPosition = gameObject.transform.position;
+
+        transform.position = (_playerPosition - _bossPosition * movementSpeed) * Time.deltaTime;
+
     }
 
     IEnumerator Shoot()
@@ -47,6 +52,7 @@ public class CuteBossEye : BossesScript
         
         float shootWaitTime = 1f;
         Instantiate(bullet, bulletSpawnPoint, bulletSpawnPoint);
+        yield return null; 
 
     }
 }
