@@ -76,7 +76,6 @@ public class Bunker : MonoBehaviour
         {
             elapsedTime += Time.deltaTime;
             float newAlpha = Mathf.Lerp(originalColor.a, 0, elapsedTime / fadeDuration);
-            Debug.Log(newAlpha);
             sSRender.color = new Color(originalColor.r, originalColor.g, originalColor.b, newAlpha);
 
             yield return null;
