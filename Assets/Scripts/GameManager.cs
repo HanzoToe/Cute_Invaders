@@ -20,7 +20,8 @@ public class GameManager : MonoBehaviour
 
     private float respawnTimer = 0.5f;
 
-    private bool playerDead = false; 
+    private bool playerDead = false;
+    private bool bossFightActive = false; 
 
     public int score { get; private set; } = 0;
     public int lives { get; private set; } = 0;
@@ -166,6 +167,15 @@ public class GameManager : MonoBehaviour
         {
             invaders.gameObject.SetActive(false);
             OnPlayerKilled(player);
+        }
+    }
+
+
+    public void ActivateBossFight()
+    {
+        if (bossFightActive)
+        {
+
         }
     }
 }
