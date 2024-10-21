@@ -28,6 +28,7 @@ public class Softbody : MonoBehaviour
             Vector2 towardsCenter = (Vector2.zero - vertex).normalized;
 
             float colliderRadius = points[i].gameObject.GetComponent<CircleCollider2D>().radius;
+
             spriteShape.spline.SetPosition(i, (vertex - towardsCenter * (colliderRadius * 0.5f)));
 
             Vector2 lt = spriteShape.spline.GetLeftTangent(i);
