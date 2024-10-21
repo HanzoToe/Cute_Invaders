@@ -60,6 +60,7 @@ public class Bunker : MonoBehaviour
         gameObject.SetActive(true);
         nrOfHits = 0;
         sSRender.color = trueOriginalColor;
+        transform.gameObject.GetComponent<CapsuleCollider2D>().enabled = true;
         int i = 0;
         foreach (Transform childTransform in Child)
         {
