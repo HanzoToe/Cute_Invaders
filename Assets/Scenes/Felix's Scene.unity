@@ -398,8 +398,8 @@ Transform:
   m_GameObject: {fileID: 208652024}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 22.075, y: 0, z: 0}
-  m_LocalScale: {x: 15, y: 30, z: 1}
+  m_LocalPosition: {x: 21.585, y: 0, z: 0}
+  m_LocalScale: {x: 13.5, y: 30, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1461797642}
@@ -1678,7 +1678,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1390014726}
   m_Layer: 0
-  m_Name: -------------------Cameras----------------------
+  m_Name: --------------------Cameras--------------------
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1709,7 +1709,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1461797642}
   m_Layer: 0
-  m_Name: UI Panels
+  m_Name: SidePanels
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1773,7 +1773,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1671629082}
   m_Layer: 0
-  m_Name: -------------------Managers--------------------
+  m_Name: --------------------General---------------------
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2024,8 +2024,8 @@ Transform:
   m_GameObject: {fileID: 1891674365}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -22.075005, y: 0, z: 0}
-  m_LocalScale: {x: 15, y: 30, z: 1}
+  m_LocalPosition: {x: -21.585, y: 0, z: 0}
+  m_LocalScale: {x: 13.5, y: 30, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1461797642}
@@ -2883,8 +2883,8 @@ SceneRoots:
   - {fileID: 163028371}
   - {fileID: 1461797642}
   - {fileID: 395519487}
+  - {fileID: 1547134464}
+  - {fileID: 8388873181402698878}
   - {fileID: 1671629082}
   - {fileID: 1284319162}
   - {fileID: 8018977827198152480}
-  - {fileID: 1547134464}
-  - {fileID: 8388873181402698878}

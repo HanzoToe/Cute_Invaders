@@ -2,8 +2,8 @@ using System.Collections;
 using UnityEngine;
 
 
-[RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(CircleCollider2D))]
+[RequireComponent(typeof(Rigidbody2D))]
 
 public class CuteBossEye : BossesScript
 {
@@ -13,22 +13,43 @@ public class CuteBossEye : BossesScript
     Transform playerPosition; 
 
     bool halfHp = false;
+    public bool isDashing = true;
 
+    Rigidbody2D rb;
+    Vector3 direction;
     private void Awake()
     {
-       
+        playerPosition = GameObject.Find("Player").transform;
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Start is called before the first frame update
     void Start()
     {
-
+        movementSpeed = 1000f; 
     }
 
     // Update is called once per frame
     void Update()
     {
         HpCheck();
+
+        if(isDashing)
+        {
+            StartCoroutine("Chase");
+        }
+        else if (!isDashing)
+        {
+            StartCoroutine("RunAway");
+        }
+        
+
+        if (playerPosition)
+        {
+            direction = (playerPosition.position - transform.position).normalized;
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            rb.rotation = angle;
+        }
     }
 
     void HpCheck()
@@ -37,13 +58,38 @@ public class CuteBossEye : BossesScript
             halfHp = true;
     }
 
-    void Dash()
+    IEnumerator Chase()
     {
-        Vector2 _playerPosition = playerPosition.transform.position;
-        Vector2 _bossPosition = gameObject.transform.position;
+        float _chaseTime = 1f;
+        float _waitTime = 1f;
+        Vector2 moveDirection = direction;
 
-        transform.position = (_playerPosition - _bossPosition * movementSpeed) * Time.deltaTime;
+        if (playerPosition)
+        {                   
+            rb.velocity = new Vector2(moveDirection.x, moveDirection.y) * movementSpeed * Time.deltaTime;
+        }
 
+        yield return new WaitForSeconds(_chaseTime);
+
+        isDashing = false;
+
+        yield return new WaitForSeconds(_waitTime);
+
+        isDashing = true;
+    }
+
+    IEnumerator RunAway()
+    {
+        Vector3 _direction = (transform.position - playerPosition.position).normalized;
+        Vector2 moveAway = _direction;
+        float runAwaySpeed = 500f;
+
+        if (playerPosition)
+        {
+            rb.velocity = new Vector2(moveAway.x, moveAway.y) * runAwaySpeed * Time.deltaTime; 
+        }
+
+        yield return null; 
     }
 
     IEnumerator Shoot()
