@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Threading;
 using UnityEngine;
 
 
@@ -7,9 +8,9 @@ using UnityEngine;
 
 public class CuteBossEye : BossesScript
 {
-    GameObject bullet;
+    public GameObject bullet;
 
-    Transform bulletSpawnPoint;
+    public Transform bulletSpawnPoint;
     Transform playerPosition; 
 
     bool halfHp = false;
@@ -17,21 +18,30 @@ public class CuteBossEye : BossesScript
 
     Rigidbody2D rb;
     Vector3 direction;
+
+    float originalHp; 
+
     private void Awake()
     {
         playerPosition = GameObject.Find("Player").transform;
         rb = GetComponent<Rigidbody2D>();
+        originalHp = hp;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        movementSpeed = 1000f; 
+        movementSpeed = 1000f;
+        hp /= 2;
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        Debug.Log(hp);
+        Debug.Log(originalHp);
+
         HpCheck();
 
         if(isDashing)
@@ -42,7 +52,14 @@ public class CuteBossEye : BossesScript
         {
             StartCoroutine("RunAway");
         }
-        
+
+
+        if(halfHp)
+        {
+            StartCoroutine("ShootCat");
+        }
+
+
 
         if (playerPosition)
         {
@@ -54,7 +71,7 @@ public class CuteBossEye : BossesScript
 
     void HpCheck()
     {
-        if (hp == hp * 0.5)
+        if (hp == originalHp / 2)
             halfHp = true;
     }
 
@@ -92,13 +109,25 @@ public class CuteBossEye : BossesScript
         yield return null; 
     }
 
-    IEnumerator Shoot()
+    IEnumerator ShootCat()
     {
         //Make bullets constantly follow the player until the player destroys them! 
-        
+        Debug.Log("Shooting");
+
         float shootWaitTime = 1f;
-        Instantiate(bullet, bulletSpawnPoint, bulletSpawnPoint);
-        yield return null; 
+        int amountShot = 0;
+        int _maxAmountBullets = 5;
+
+        while(amountShot < _maxAmountBullets)
+        {
+            amountShot++;
+            Instantiate(bullet, bulletSpawnPoint.position, Quaternion.identity);
+            Debug.Log("Shooting");
+        }
+        
+        yield return new WaitForSeconds(shootWaitTime);
+
+        amountShot = 0; 
 
     }
 }
