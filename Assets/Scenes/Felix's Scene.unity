@@ -1678,7 +1678,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1390014726}
   m_Layer: 0
-  m_Name: -------------------Cameras----------------------
+  m_Name: --------------------Cameras--------------------
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1773,7 +1773,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1671629082}
   m_Layer: 0
-  m_Name: -------------------Managers--------------------
+  m_Name: --------------------General---------------------
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2883,8 +2883,8 @@ SceneRoots:
   - {fileID: 163028371}
   - {fileID: 1461797642}
   - {fileID: 395519487}
+  - {fileID: 1547134464}
+  - {fileID: 8388873181402698878}
   - {fileID: 1671629082}
   - {fileID: 1284319162}
   - {fileID: 8018977827198152480}
-  - {fileID: 1547134464}
-  - {fileID: 8388873181402698878}
