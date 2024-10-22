@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Threading;
 using UnityEngine;
 
 
@@ -38,6 +37,8 @@ public class CuteBossEye : BossesScript
     // Update is called once per frame
     void Update()
     {
+        FindPLayerPosition();
+
 
         Debug.Log(hp);
         Debug.Log(originalHp);
@@ -53,26 +54,27 @@ public class CuteBossEye : BossesScript
             StartCoroutine("RunAway");
         }
 
-
         if(halfHp)
         {
-            StartCoroutine("ShootCat");
+            StartCoroutine("Shoot");
         }
-
-
-
-        if (playerPosition)
-        {
-            direction = (playerPosition.position - transform.position).normalized;
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            rb.rotation = angle;
-        }
+  
     }
 
     void HpCheck()
     {
         if (hp == originalHp / 2)
             halfHp = true;
+    }
+
+    void FindPLayerPosition()
+    {
+        if (playerPosition)
+        {
+            direction = (playerPosition.position - transform.position).normalized;
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            rb.rotation = angle;
+        }
     }
 
     IEnumerator Chase()
@@ -109,25 +111,14 @@ public class CuteBossEye : BossesScript
         yield return null; 
     }
 
-    IEnumerator ShootCat()
-    {
-        //Make bullets constantly follow the player until the player destroys them! 
-        Debug.Log("Shooting");
-
-        float shootWaitTime = 1f;
-        int amountShot = 0;
-        int _maxAmountBullets = 5;
-
-        while(amountShot < _maxAmountBullets)
+    IEnumerator Shoot()
+    {        
+        if (!isDashing)
         {
-            amountShot++;
-            Instantiate(bullet, bulletSpawnPoint.position, Quaternion.identity);
-            Debug.Log("Shooting");
+            Instantiate(bullet, bulletSpawnPoint.position, Quaternion.identity);     
         }
-        
-        yield return new WaitForSeconds(shootWaitTime);
 
-        amountShot = 0; 
+        yield return null; 
 
     }
 }

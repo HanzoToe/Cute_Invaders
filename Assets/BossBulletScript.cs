@@ -5,19 +5,20 @@ using UnityEngine;
 public class BossBulletScript : MonoBehaviour
 {
     Transform playerPosition;
-    float chasingSpeed = 5f;
+    float shotSpeed = 20f;
 
     Vector3 direction; 
 
     // Start is called before the first frame update
     void Start()
     {
-        direction = transform.right; 
+        playerPosition = GameObject.Find("Player").transform;
+        direction = (playerPosition.position - transform.position).normalized; 
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position += chasingSpeed * Time.deltaTime * direction;
+        transform.position += shotSpeed * Time.deltaTime * direction;
     }
 }

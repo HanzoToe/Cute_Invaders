@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.9016218, y: -3.815905, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 421925609640284256}
@@ -135,7 +135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6996276ec8f414d4ab6078e4a56156f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 3648722215407555508, guid: 6b57bd5e6bd0ffb4eabcd07e7e4acc45, type: 3}
+  bullet: {fileID: 4338680813866555047, guid: 87ee8c0f2bd21b147b2c489d65f32e06, type: 3}
   bulletSpawnPoint: {fileID: 421925609640284256}
   isDashing: 1
 --- !u!50 &404075342531848159
@@ -161,9 +161,9 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_Interpolate: 1
+  m_SleepingMode: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!1 &3165922407351023722
 GameObject:
@@ -174,7 +174,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 421925609640284256}
-  - component: {fileID: 1435100055290060250}
   m_Layer: 11
   m_Name: BulletSpawnPoint
   m_TagString: Untagged
@@ -191,21 +190,9 @@ Transform:
   m_GameObject: {fileID: 3165922407351023722}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.81, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2405962838710755839}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1435100055290060250
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3165922407351023722}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b189b482aecd7141ae711a443435e7e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
