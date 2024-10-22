@@ -1,26 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
-
-[RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(BoxCollider2D))]
-public class Player : MonoBehaviour
+public class BossPlayer : MonoBehaviour
 {
     public GameObject LeftEdge;
     public GameObject RightEdge;
     public Laser laserPrefab;
-    public SugarRush sugarRushScript; 
     Laser laser;
-    public float speed = 5f;
-    public float timer = 0.5f;
+    public float speed = 500f;
+    public float timer = 0.2f;
     public float Orginaltime;
+    Rigidbody2D rb;
+    Vector2 movement;
 
     AudioManagerScript AudioManagerScript;
 
     private void Start()
     {
-        sugarRushScript = GetComponent<SugarRush>();
+        rb = GetComponent<Rigidbody2D>();
         Orginaltime = timer;
         AudioManagerScript = GameObject.Find("AudioManager").GetComponent<AudioManagerScript>();
 
@@ -30,24 +29,6 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 position = transform.position;
-
-        if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            position.x -= speed * Time.deltaTime;
-        }
-        else if (Input.GetKey(KeyCode.RightArrow))
-        {
-            position.x += speed * Time.deltaTime;
-        }
-
-        Vector3 leftEdge = LeftEdge.transform.position;
-        Vector3 rightEdge = RightEdge.transform.position;
-
-        position.x = Mathf.Clamp(position.x, leftEdge.x, rightEdge.x);
-
-        transform.position = position;
-
 
         timer -= Time.deltaTime;
 
@@ -62,11 +43,20 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void FixedUpdate()
+    {
+        movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+
+        rb.velocity = movement * speed * Time.deltaTime;
+
+    }
+
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Missile") || collision.gameObject.layer == LayerMask.NameToLayer("Invader"))
         {
-            GameManager.Instance.OnPlayerKilled(this, null);
+            GameManager.Instance.OnPlayerKilled(null,this);
         }
     }
 }
