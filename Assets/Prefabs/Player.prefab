@@ -76,7 +76,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e4983bae5da7225409fb8716e9270f1c, type: 3}
   m_Color: {r: 0, g: 1, b: 0.13558388, a: 1}
   m_FlipX: 0
@@ -172,6 +172,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f37ae233527fbf74e86032e39fb7e32e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LeftEdge: {fileID: 0}
+  RightEdge: {fileID: 0}
   laserPrefab: {fileID: -8301603181750618243, guid: 6b57bd5e6bd0ffb4eabcd07e7e4acc45, type: 3}
   sugarRushScript: {fileID: 0}
   speed: 5
