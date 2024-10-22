@@ -14,6 +14,7 @@ public class BossPlayer : MonoBehaviour
     public float Orginaltime;
     Rigidbody2D rb;
     Vector2 movement;
+    Vector3 mouspos; 
 
     AudioManagerScript AudioManagerScript;
 
@@ -41,6 +42,8 @@ public class BossPlayer : MonoBehaviour
             //Sound effects -Love
 
         }
+
+        GetMousePos();
     }
 
     private void FixedUpdate()
@@ -49,6 +52,17 @@ public class BossPlayer : MonoBehaviour
 
         rb.velocity = movement * speed * Time.deltaTime;
 
+    }
+
+    void GetMousePos()
+    {
+        mouspos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        Vector2 direction = (mouspos - transform.position).normalized;
+
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+        transform.rotation = Quaternion.Euler(0, 0, angle - 90);
     }
 
 
