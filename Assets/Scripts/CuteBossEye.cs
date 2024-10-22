@@ -30,7 +30,7 @@ public class CuteBossEye : BossesScript
     // Start is called before the first frame update
     void Start()
     {
-        movementSpeed = 1000f;
+        movementSpeed = 2000f;
         hp /= 2;
     }
 

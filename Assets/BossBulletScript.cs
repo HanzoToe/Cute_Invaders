@@ -6,8 +6,10 @@ public class BossBulletScript : MonoBehaviour
 {
     Transform playerPosition;
     float shotSpeed = 20f;
+    float timeBeforeDestroy = 1f;
 
     Vector3 direction; 
+
 
     // Start is called before the first frame update
     void Start()
@@ -20,5 +22,14 @@ public class BossBulletScript : MonoBehaviour
     void Update()
     {
         transform.position += shotSpeed * Time.deltaTime * direction;
+        timeBeforeDestroy -= Time.deltaTime;
+
+        if(timeBeforeDestroy <= 0)
+        {
+            Destroy(gameObject);
+        }
+
     }
+
+    
 }

@@ -118,12 +118,16 @@ public class GameManager : MonoBehaviour
         lives = _lives;
     }
 
-    public void OnPlayerKilled(Player player)
+    public void OnPlayerKilled(Player player, BossPlayer bPlayer)
     {
         playerDead = true; 
-        player.gameObject.SetActive(false);
+       
         lives--;
         
+        if(bPlayer != null)
+            bPlayer.gameObject.SetActive(false);
+        else
+            player.gameObject.SetActive(false);
     }
 
 
@@ -166,7 +170,7 @@ public class GameManager : MonoBehaviour
         if (invaders.gameObject.activeSelf)
         {
             invaders.gameObject.SetActive(false);
-            OnPlayerKilled(player);
+            OnPlayerKilled(player, null);
         }
     }
 
