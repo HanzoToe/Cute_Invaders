@@ -122,6 +122,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &83152 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6272456790943084580, guid: 24e2d14f4a2f861498f7b79742397968, type: 3}
+  m_PrefabInstance: {fileID: 8018977827198152480}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b477d49138e2146479b87c8bfcaccb96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &25153486
 GameObject:
   m_ObjectHideFlags: 0
@@ -883,7 +894,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 83152}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: NewGame
         m_Mode: 1
@@ -1601,7 +1612,19 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bunker (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4010843430058791421, guid: 0c3f9e4d2d32697449676ea998232f94, type: 3}
+    - {fileID: 3501259637994495922, guid: 0c3f9e4d2d32697449676ea998232f94, type: 3}
+    - {fileID: 347649492660574253, guid: 0c3f9e4d2d32697449676ea998232f94, type: 3}
+    - {fileID: 1250742739272178460, guid: 0c3f9e4d2d32697449676ea998232f94, type: 3}
+    - {fileID: 9116098186418737536, guid: 0c3f9e4d2d32697449676ea998232f94, type: 3}
+    - {fileID: 2800492681911419914, guid: 0c3f9e4d2d32697449676ea998232f94, type: 3}
+    - {fileID: 3352163533155342299, guid: 0c3f9e4d2d32697449676ea998232f94, type: 3}
+    - {fileID: 3961395847814922772, guid: 0c3f9e4d2d32697449676ea998232f94, type: 3}
+    - {fileID: 2708859492339362544, guid: 0c3f9e4d2d32697449676ea998232f94, type: 3}
+    - {fileID: 7083275590477042518, guid: 0c3f9e4d2d32697449676ea998232f94, type: 3}
+    - {fileID: 8513455909135065049, guid: 0c3f9e4d2d32697449676ea998232f94, type: 3}
+    - {fileID: 1259478653043119685, guid: 0c3f9e4d2d32697449676ea998232f94, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1741,7 +1764,19 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bunker (3)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4010843430058791421, guid: 0c3f9e4d2d32697449676ea998232f94, type: 3}
+    - {fileID: 3501259637994495922, guid: 0c3f9e4d2d32697449676ea998232f94, type: 3}
+    - {fileID: 347649492660574253, guid: 0c3f9e4d2d32697449676ea998232f94, type: 3}
+    - {fileID: 1250742739272178460, guid: 0c3f9e4d2d32697449676ea998232f94, type: 3}
+    - {fileID: 9116098186418737536, guid: 0c3f9e4d2d32697449676ea998232f94, type: 3}
+    - {fileID: 2800492681911419914, guid: 0c3f9e4d2d32697449676ea998232f94, type: 3}
+    - {fileID: 3352163533155342299, guid: 0c3f9e4d2d32697449676ea998232f94, type: 3}
+    - {fileID: 3961395847814922772, guid: 0c3f9e4d2d32697449676ea998232f94, type: 3}
+    - {fileID: 2708859492339362544, guid: 0c3f9e4d2d32697449676ea998232f94, type: 3}
+    - {fileID: 7083275590477042518, guid: 0c3f9e4d2d32697449676ea998232f94, type: 3}
+    - {fileID: 8513455909135065049, guid: 0c3f9e4d2d32697449676ea998232f94, type: 3}
+    - {fileID: 1259478653043119685, guid: 0c3f9e4d2d32697449676ea998232f94, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2640,7 +2675,19 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bunker (2)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4010843430058791421, guid: 0c3f9e4d2d32697449676ea998232f94, type: 3}
+    - {fileID: 3501259637994495922, guid: 0c3f9e4d2d32697449676ea998232f94, type: 3}
+    - {fileID: 347649492660574253, guid: 0c3f9e4d2d32697449676ea998232f94, type: 3}
+    - {fileID: 1250742739272178460, guid: 0c3f9e4d2d32697449676ea998232f94, type: 3}
+    - {fileID: 9116098186418737536, guid: 0c3f9e4d2d32697449676ea998232f94, type: 3}
+    - {fileID: 2800492681911419914, guid: 0c3f9e4d2d32697449676ea998232f94, type: 3}
+    - {fileID: 3352163533155342299, guid: 0c3f9e4d2d32697449676ea998232f94, type: 3}
+    - {fileID: 3961395847814922772, guid: 0c3f9e4d2d32697449676ea998232f94, type: 3}
+    - {fileID: 2708859492339362544, guid: 0c3f9e4d2d32697449676ea998232f94, type: 3}
+    - {fileID: 7083275590477042518, guid: 0c3f9e4d2d32697449676ea998232f94, type: 3}
+    - {fileID: 8513455909135065049, guid: 0c3f9e4d2d32697449676ea998232f94, type: 3}
+    - {fileID: 1259478653043119685, guid: 0c3f9e4d2d32697449676ea998232f94, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -3800,7 +3847,19 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bunker
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4010843430058791421, guid: 0c3f9e4d2d32697449676ea998232f94, type: 3}
+    - {fileID: 3501259637994495922, guid: 0c3f9e4d2d32697449676ea998232f94, type: 3}
+    - {fileID: 347649492660574253, guid: 0c3f9e4d2d32697449676ea998232f94, type: 3}
+    - {fileID: 1250742739272178460, guid: 0c3f9e4d2d32697449676ea998232f94, type: 3}
+    - {fileID: 9116098186418737536, guid: 0c3f9e4d2d32697449676ea998232f94, type: 3}
+    - {fileID: 2800492681911419914, guid: 0c3f9e4d2d32697449676ea998232f94, type: 3}
+    - {fileID: 3352163533155342299, guid: 0c3f9e4d2d32697449676ea998232f94, type: 3}
+    - {fileID: 3961395847814922772, guid: 0c3f9e4d2d32697449676ea998232f94, type: 3}
+    - {fileID: 2708859492339362544, guid: 0c3f9e4d2d32697449676ea998232f94, type: 3}
+    - {fileID: 7083275590477042518, guid: 0c3f9e4d2d32697449676ea998232f94, type: 3}
+    - {fileID: 8513455909135065049, guid: 0c3f9e4d2d32697449676ea998232f94, type: 3}
+    - {fileID: 1259478653043119685, guid: 0c3f9e4d2d32697449676ea998232f94, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

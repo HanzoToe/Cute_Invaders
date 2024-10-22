@@ -1,5 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
+
+using Cinemachine;
 using UnityEngine;
 
 
@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
 
     AudioManagerScript AudioManagerScript;
 
+    
     private void Start()
     {
         sugarRushScript = GetComponent<SugarRush>();
@@ -48,16 +49,28 @@ public class Player : MonoBehaviour
 
         transform.position = position;
 
+        
+
+        //Shooting effects - Love
 
         timer -= Time.deltaTime;
 
         if (Input.GetKey(KeyCode.Space) && timer <= 0)
         {
+            
             laser = Instantiate(laserPrefab, transform.position + new Vector3(0, 1), Quaternion.identity);
             timer = Orginaltime;
 
-            AudioManagerScript.Instance.PlaySFX("Shoot1");
-            //Sound effects -Love
+            int Shootingnum = Random.Range(1, 3);
+            Debug.Log(Shootingnum);
+            if (Shootingnum == 1)
+            {
+                AudioManagerScript.Instance.PlaySFX("Shoot1");
+            }
+            else if (Shootingnum == 2 || Shootingnum == 3)
+            {
+                AudioManagerScript.Instance.PlaySFX("Shoot2");
+            }
 
         }
     }
