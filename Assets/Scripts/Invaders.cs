@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
+using UnityEditor.Timeline;
+using UnityEditor.Timeline.Actions;
 using UnityEngine;
 
 public class Invaders : MonoBehaviour
@@ -19,6 +21,8 @@ public class Invaders : MonoBehaviour
 
     public Missile missilePrefab;
     public int numberOfInvaders;
+
+    public List<Transform> invaderList;
 
     private void Awake()
     {
@@ -76,21 +80,15 @@ public class Invaders : MonoBehaviour
             return;
         }
 
-        foreach(Transform invader in transform)
+        int rand = UnityEngine.Random.Range(0, invaderList.Count - 1);
+        Transform invaderShoot = invaderList[rand];
+        if (!invaderShoot.gameObject.activeInHierarchy)
         {
-
-            if (!invader.gameObject.activeInHierarchy) //om en invader är död ska den inte kunna skjuta...
-                continue;
-            
-           
-            float rand = UnityEngine.Random.value;
-            if (rand < 0.2)
-            {
-                Instantiate(missilePrefab, invader.position, Quaternion.identity);
-                break;
-            }
+            return;
         }
-       
+        Instantiate(missilePrefab, invaderShoot.position, Quaternion.identity);
+
+
     }
 
     //Kollar hur många invaders som lever
@@ -110,6 +108,8 @@ public class Invaders : MonoBehaviour
     //Flyttar invaders åt sidan
     void Update()
     {
+        invaderList = new List<Transform>(GetComponentsInChildren<Transform>());
+        invaderList.RemoveAt(0);
         float speed = 1f;
         transform.position += speed * Time.deltaTime * direction;
 
