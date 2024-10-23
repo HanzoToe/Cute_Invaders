@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     private Player player;
+    private BossPlayer bplayer; 
     private Invaders invaders;
     private MysteryShip mysteryShip;
     private Bunker[] bunkers;
@@ -51,6 +52,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         player = FindObjectOfType<Player>();
+        bplayer = FindObjectOfType<BossPlayer>();
         invaders = FindObjectOfType<Invaders>();
         mysteryShip = FindObjectOfType<MysteryShip>();
         bunkers = FindObjectsOfType<Bunker>();
@@ -74,6 +76,7 @@ public class GameManager : MonoBehaviour
             StartCoroutine("Respawn");
         }
 
+        Debug.Log(lives);
     }
 
     public void NewGame()
@@ -118,15 +121,15 @@ public class GameManager : MonoBehaviour
         lives = _lives;
     }
 
-    public void OnPlayerKilled(Player player, BossPlayer bPlayer)
+    public void OnPlayerKilled(Player player, BossPlayer _bPlayer)
     {
         playerDead = true; 
        
         lives--;
         
-        if(bPlayer != null)
-            bPlayer.gameObject.SetActive(false);
-        else
+        if(_bPlayer != null)
+            _bPlayer.gameObject.SetActive(false);
+        else if(player != null)
             player.gameObject.SetActive(false);
     }
 
@@ -135,13 +138,21 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(respawnTimer);
 
-        if (lives > 0)
+        if (lives > 0 && player != null)
         {            
             Vector3 position = player.transform.position;
             position.x = 0f;
             player.transform.position = position;
             player.gameObject.SetActive(true);
             playerDead = false; 
+        }
+        else if(lives > 0 && bplayer != null)
+        {
+            Vector3 position = bplayer.transform.position;
+            position.x = 0f;
+            bplayer.transform.position = position;
+            bplayer.gameObject.SetActive(true);
+            playerDead = false;
         }
 
         yield return null; 
