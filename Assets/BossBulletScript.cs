@@ -9,7 +9,7 @@ public class BossBulletScript : MonoBehaviour
     float timeBeforeDestroy = 1f;
 
     Vector3 direction; 
-
+   
 
     // Start is called before the first frame update
     void Start()
