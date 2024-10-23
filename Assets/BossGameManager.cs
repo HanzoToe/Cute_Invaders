@@ -12,6 +12,7 @@ public class BossGameManager : MonoBehaviour
     private BossPlayer bplayer;
 
     private float respawnTimer = 0.5f;
+    public float playerInvincibleFrames = 0;
 
     private bool playerDead = false;
 
@@ -59,7 +60,10 @@ public class BossGameManager : MonoBehaviour
             StartCoroutine("Respawn");
         }
 
-        Debug.Log(lives);
+        if (playerInvincibleFrames > 0)
+            playerInvincibleFrames -= Time.deltaTime;
+        else
+            playerInvincibleFrames = Mathf.Max(0, playerInvincibleFrames);
     }
 
 
@@ -76,13 +80,18 @@ public class BossGameManager : MonoBehaviour
 
     public void OnPlayerKilled(BossPlayer _bPlayer)
     {
-        playerDead = true;
 
-        lives--;
+        if(playerInvincibleFrames <= 0)
+        {
+            playerDead = true;
 
-        _bPlayer.gameObject.SetActive(false);
-        
-            
+            lives--;
+
+            _bPlayer.gameObject.SetActive(false);
+
+            playerInvincibleFrames = 3;
+        }
+               
     }
 
 

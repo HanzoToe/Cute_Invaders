@@ -1,8 +1,6 @@
 using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Timeline.Actions;
-using System.Threading;
+
 
 [DefaultExecutionOrder(-1)]
 public class GameManager : MonoBehaviour

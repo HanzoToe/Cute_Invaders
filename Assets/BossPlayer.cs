@@ -16,7 +16,6 @@ public class BossPlayer : MonoBehaviour
     Vector2 movement;
     Vector3 mouspos; 
     public Transform laserSpawnPoint;
-    private float playerInvincibleFrames = 0;
     BoxCollider2D bxColl;
 
     AudioManagerScript AudioManagerScript;
@@ -38,12 +37,6 @@ public class BossPlayer : MonoBehaviour
     {
 
         timer -= Time.deltaTime;
-        playerInvincibleFrames -= Time.deltaTime;
-
-        if (playerInvincibleFrames > 0)
-            bxColl.enabled = false;
-        else
-            bxColl.enabled = true;
 
 
         if (Input.GetKey(KeyCode.Space) && timer <= 0)
@@ -61,7 +54,7 @@ public class BossPlayer : MonoBehaviour
 
     private void FixedUpdate()
     {
-        movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
 
         rb.velocity = movement * speed * Time.fixedDeltaTime;
 
@@ -81,10 +74,9 @@ public class BossPlayer : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Missile") || collision.gameObject.layer == LayerMask.NameToLayer("Invader") && playerInvincibleFrames <= 0)
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Missile") || collision.gameObject.layer == LayerMask.NameToLayer("Invader"))
         {
-            playerInvincibleFrames = 3f;
-            BossGameManager.Instance.OnPlayerKilled(this);           
+            BossGameManager.Instance.OnPlayerKilled(this);
         }
     }
 }

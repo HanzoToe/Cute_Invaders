@@ -13,7 +13,8 @@ public class CuteBossEye : BossesScript
     Transform playerPosition; 
 
     bool halfHp = false;
-    public bool isDashing = true;
+    bool isDashing = true;
+    bool isShooting = false; 
 
     Rigidbody2D rb;
     Vector3 direction;
@@ -58,7 +59,7 @@ public class CuteBossEye : BossesScript
             StartCoroutine("RunAway");
         }
 
-        if(halfHp)
+        if(halfHp && !isShooting)
         {
             StartCoroutine("Shoot");
         }
@@ -134,13 +135,27 @@ public class CuteBossEye : BossesScript
     }
 
     IEnumerator Shoot()
-    {        
-        if (!isDashing)
+    {
+        isShooting = true; 
+        float shotIntervals = 0.1f;
+        float originalShotIntervals = shotIntervals;
+
+        Debug.Log(shotIntervals);
+
+        if (!isDashing && playerPosition.gameObject.active) 
         {
-            Instantiate(bullet, bulletSpawnPoint.position, Quaternion.identity);     
+            while(shotIntervals > 0f)
+            {
+                Instantiate(bullet, bulletSpawnPoint.position, Quaternion.identity);
+
+                shotIntervals -= 0.1f;
+            }
+
+            yield return new WaitForSeconds(0.1f);
+            shotIntervals = originalShotIntervals;
         }
 
-        yield return null; 
+        isShooting = false; 
 
     }
 }
