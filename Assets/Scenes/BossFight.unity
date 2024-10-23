@@ -131,7 +131,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 24006627}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RightEdge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -316,7 +316,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -22}
+  m_AnchoredPosition: {x: 0, y: -22.000092}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &394281818
@@ -582,37 +582,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 463978712}
   m_CullTransparentMesh: 1
---- !u!1 &637741490
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 637741491}
-  m_Layer: 3
-  m_Name: LaserPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &637741491
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 637741490}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.4, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1268455550}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &645008301
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -621,6 +590,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 404075342531848159, guid: 75701257556174d4a9d02678b8c3324f, type: 3}
+      propertyPath: m_Constraints
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1316272624467005739, guid: 75701257556174d4a9d02678b8c3324f, type: 3}
       propertyPath: m_Radius
       value: 0.48460495
@@ -639,11 +612,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2405962838710755839, guid: 75701257556174d4a9d02678b8c3324f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.9016218
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2405962838710755839, guid: 75701257556174d4a9d02678b8c3324f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.815905
+      value: 9.23
       objectReference: {fileID: 0}
     - target: {fileID: 2405962838710755839, guid: 75701257556174d4a9d02678b8c3324f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -684,6 +657,10 @@ PrefabInstance:
     - target: {fileID: 3396377920702885243, guid: 75701257556174d4a9d02678b8c3324f, type: 3}
       propertyPath: m_IsTrigger
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7506685858224716706, guid: 75701257556174d4a9d02678b8c3324f, type: 3}
+      propertyPath: m_FlipX
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -734,7 +711,7 @@ GameObject:
   - component: {fileID: 663099288}
   - component: {fileID: 663099289}
   - component: {fileID: 663099290}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LeftPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1056,7 +1033,7 @@ GameObject:
   - component: {fileID: 847845392}
   - component: {fileID: 847845393}
   - component: {fileID: 847845394}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RightPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1245,7 +1222,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1212410397}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LeftEdge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1316,6 +1293,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1752040487129183582, guid: a53d79aacf3bca745b9c33e5c888bcd7, type: 3}
+      propertyPath: speed
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 1752040487129183582, guid: a53d79aacf3bca745b9c33e5c888bcd7, type: 3}
       propertyPath: LeftEdge
       value: 
       objectReference: {fileID: 663099287}
@@ -1323,31 +1304,15 @@ PrefabInstance:
       propertyPath: RightEdge
       value: 
       objectReference: {fileID: 847845391}
-    - target: {fileID: 1752040487129183582, guid: a53d79aacf3bca745b9c33e5c888bcd7, type: 3}
-      propertyPath: laserPrefab
-      value: 
-      objectReference: {fileID: 2136209314024414452, guid: bd43de0b38c94814cab3baa93ed17f4f, type: 3}
-    - target: {fileID: 1752040487129183582, guid: a53d79aacf3bca745b9c33e5c888bcd7, type: 3}
-      propertyPath: laserSpawnPoint
-      value: 
-      objectReference: {fileID: 637741491}
     - target: {fileID: 3781116409724180716, guid: a53d79aacf3bca745b9c33e5c888bcd7, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 1227334969840314724, guid: a53d79aacf3bca745b9c33e5c888bcd7, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 637741491}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a53d79aacf3bca745b9c33e5c888bcd7, type: 3}
---- !u!4 &1268455550 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1227334969840314724, guid: a53d79aacf3bca745b9c33e5c888bcd7, type: 3}
-  m_PrefabInstance: {fileID: 1268455543}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1326863435
 GameObject:
   m_ObjectHideFlags: 0
