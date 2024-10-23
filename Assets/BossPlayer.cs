@@ -7,14 +7,15 @@ public class BossPlayer : MonoBehaviour
 {
     public GameObject LeftEdge;
     public GameObject RightEdge;
-    public Laser laserPrefab;
-    Laser laser;
+    public BossLaser laserPrefab;
+    BossLaser laser;
     public float speed = 500f;
     public float timer = 0.2f;
     public float Orginaltime;
     Rigidbody2D rb;
     Vector2 movement;
-    Vector3 mouspos; 
+    Vector3 mouspos;
+    public Transform laserSpawnPoint;
 
     AudioManagerScript AudioManagerScript;
 
@@ -35,7 +36,7 @@ public class BossPlayer : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Space) && timer <= 0)
         {
-            laser = Instantiate(laserPrefab, transform.position + new Vector3(0, 1), Quaternion.identity);
+            laser = Instantiate(laserPrefab, laserSpawnPoint.position, Quaternion.identity);
             timer = Orginaltime;
 
             AudioManagerScript.Instance.PlaySFX("Shoot1");
