@@ -19,7 +19,7 @@ public class CuteBossEye : BossesScript
     Vector3 direction;
 
     float originalHp;
-
+  
     SpriteRenderer sr;
 
     private void Awake()
