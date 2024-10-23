@@ -9,7 +9,7 @@ public class BossLaser : Projectile
     // Start is called before the first frame update
     void Start()
     {
-        MoveTowardsMousePos();
+        transform.position = transform.forward * speed; 
     }
 
     // Update is called once per frame
@@ -19,15 +19,5 @@ public class BossLaser : Projectile
     }
 
 
-    void MoveTowardsMousePos()
-    {
-        //Set the "direction" to the mouseposition
 
-        Vector2 mousepos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-        direction = (mousepos - (Vector2)transform.position).normalized;
-
-        transform.position = direction * speed * Time.deltaTime; 
-        
-    }
 }
