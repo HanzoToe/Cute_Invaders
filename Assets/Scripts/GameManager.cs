@@ -8,7 +8,7 @@ using System.Threading;
 public class GameManager : MonoBehaviour
 {
     public GameObject DeathScreen;
-
+    public GameObject PauseScreen;
     private SugarRush sugarRushScript;
     private SugarRushBar sugarRushBar; 
     public static GameManager Instance { get; private set; }
@@ -181,5 +181,10 @@ public class GameManager : MonoBehaviour
         {
 
         }
+    }
+
+    public void PauseMenu()
+    {
+        PauseScreen.SetActive(true);
     }
 }

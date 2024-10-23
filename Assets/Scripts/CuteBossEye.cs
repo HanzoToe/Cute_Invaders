@@ -18,12 +18,15 @@ public class CuteBossEye : BossesScript
     Rigidbody2D rb;
     Vector3 direction;
 
-    float originalHp; 
+    float originalHp;
+
+    SpriteRenderer sr;
 
     private void Awake()
     {
         playerPosition = GameObject.Find("Player").transform;
         rb = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
         originalHp = hp;
     }
 
@@ -38,6 +41,7 @@ public class CuteBossEye : BossesScript
     void Update()
     {
         FindPLayerPosition();
+        FacePlayer();
 
 
         Debug.Log(hp);
@@ -75,6 +79,24 @@ public class CuteBossEye : BossesScript
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             rb.rotation = angle;
         }
+    }
+
+    void FacePlayer()
+    {
+        Vector2 direction = ((Vector2)playerPosition.position - (Vector2)transform.position).normalized;
+        transform.right = direction.normalized;
+
+        if (direction.x < 0)
+        {
+            sr.flipX = true;
+            sr.flipY = true;
+        }
+        else if (direction.x > 0)
+        {
+            sr.flipY = false;
+            sr.flipX = true;
+        }
+        
     }
 
     IEnumerator Chase()
