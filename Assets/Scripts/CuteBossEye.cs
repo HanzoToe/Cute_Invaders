@@ -8,7 +8,7 @@ using UnityEngine;
 public class CuteBossEye : BossesScript
 {
     public GameObject bullet;
-
+    GameObject Position;
     public Transform bulletSpawnPoint;
     Transform playerPosition; 
 
@@ -146,7 +146,7 @@ public class CuteBossEye : BossesScript
         {
             while(shotIntervals > 0f)
             {
-                Instantiate(bullet, bulletSpawnPoint.position, Quaternion.identity);
+                Instantiate(bullet, bulletSpawnPoint.position, playerPosition.localRotation);
 
                 shotIntervals -= 0.1f;
             }
