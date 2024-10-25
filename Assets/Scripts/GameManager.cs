@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     private float respawnTimer = 0.5f;
 
     private bool playerDead = false;
+    private bool GameIsPaused = false;
 
     int mysteryShipHit = 0; 
 
@@ -76,6 +77,15 @@ public class GameManager : MonoBehaviour
         Debug.Log(lives);
 
         ActivateBossFight();
+
+        if (Input.GetKeyDown(KeyCode.Escape) && !GameIsPaused)
+        {
+            PauseMenu();
+        }
+        else if (Input.GetKeyDown(KeyCode.Escape) && GameIsPaused)
+        {
+            UnPauseMenu();
+        }
     }
 
     public void NewGame()
@@ -84,6 +94,7 @@ public class GameManager : MonoBehaviour
         SetLives(3);
         NewRound();
         DeathScreen.SetActive(false);
+        UnPauseMenu();
         sugarRushScript.startCharge = 0;
         sugarRushBar.RemoveBar();
         mysteryShipHit = 0; 
@@ -188,6 +199,14 @@ public class GameManager : MonoBehaviour
 
     public void PauseMenu()
     {
+        GameIsPaused = true;
         PauseScreen.SetActive(true);
+        Time.timeScale = 0f;
+    }
+    public void UnPauseMenu()
+    {
+        GameIsPaused = false;
+        PauseScreen.SetActive(false);
+        Time.timeScale = 1f;
     }
 }
