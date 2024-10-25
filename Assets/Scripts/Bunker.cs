@@ -8,7 +8,7 @@ public class Bunker : MonoBehaviour
 {
     private int nrOfHits = 0;
     private List<Transform> Child = new List<Transform>();
-    public List<Vector3> startLoc = new List<Vector3>();
+    private List<Vector3> startLoc = new List<Vector3>();
     private SpriteShapeRenderer sSRender;
     float fadeDuration = 2.0f;
     Color trueOriginalColor;
@@ -16,6 +16,7 @@ public class Bunker : MonoBehaviour
     AudioManagerScript AudioManagerScript;
     private void Awake()
     {
+        //Tar alla childerns transform, tar bort central punkt, tar bort sprite shape, vertexes start position - Pelle
         Child = new List<Transform>(GetComponentsInChildren<Transform>());
         Child.RemoveAt(0);
         int lastIndex = Child.Count - 1;
@@ -30,6 +31,7 @@ public class Bunker : MonoBehaviour
 
     private void Start()
     {
+        //audio manager - Love
         AudioManagerScript = GameObject.Find("AudioManager").GetComponent<AudioManagerScript>();
     }
 
@@ -40,7 +42,7 @@ public class Bunker : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("Missile") || other.gameObject.layer == LayerMask.NameToLayer("Invader"))
         {
            
-         
+         //Disablar joints efter 4 hits och sprider ut den - Pelle
 
             nrOfHits++;
             if (nrOfHits >= 4)
@@ -64,6 +66,8 @@ public class Bunker : MonoBehaviour
 
     public void ResetBunker()
     {
+
+        //sätter punketerna till orginal punkterna och tar tillbaka joints mellan vertexes - Pelle
         gameObject.SetActive(true);
         nrOfHits = 0;
         sSRender.color = trueOriginalColor;
@@ -87,6 +91,7 @@ public class Bunker : MonoBehaviour
 
     private IEnumerator FadeOut()
     {
+        //fadear ut blobben till den blir osynlig - Pelle
         Color originalColor = sSRender.color;
         float elapsedTime = 0f;
 
