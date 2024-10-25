@@ -179,7 +179,7 @@ public class GameManager : MonoBehaviour
 
     public void ActivateBossFight()
     {
-        if (mysteryShipHit == 3 && invaders.GetInvaderCount() == 0)
+        if (mysteryShipHit == 3)
         {
             SceneManager.LoadScene(1);
         }
