@@ -203,7 +203,7 @@ TrailRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Time: 0.75
   m_PreviewTimeScale: 1
   m_Parameters:
@@ -5129,3 +5129,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9805548150cc0a84f88ed0c0220b4b9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dmg: 0
