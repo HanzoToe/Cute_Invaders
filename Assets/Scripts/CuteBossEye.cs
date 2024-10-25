@@ -35,7 +35,7 @@ public class CuteBossEye : BossesScript
     // Start is called before the first frame update
     void Start()
     {
-        movementSpeed = 1500f;
+        movementSpeed = 700f;
     }
 
     // Update is called once per frame
@@ -71,7 +71,7 @@ public class CuteBossEye : BossesScript
         if (hp == originalHp / 2)
         {
             halfHp = true;
-            movementSpeed = 2250f;
+            movementSpeed = 1000f;
         }
         else if(hp <= 0)
         {
