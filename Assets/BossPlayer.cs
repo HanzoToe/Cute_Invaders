@@ -23,9 +23,11 @@ public class BossPlayer : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         Orginaltime = timer;
+        
+        
         AudioManagerScript = GameObject.Find("AudioManager").GetComponent<AudioManagerScript>();
 
-        //-Love
+        //-Love ^
     }
 
     // Update is called once per frame
@@ -33,6 +35,7 @@ public class BossPlayer : MonoBehaviour
     {
 
         timer -= Time.deltaTime;
+
 
         if (Input.GetKey(KeyCode.Space) && timer <= 0)
         {
@@ -49,7 +52,7 @@ public class BossPlayer : MonoBehaviour
 
     private void FixedUpdate()
     {
-        movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
 
         rb.velocity = movement * speed * Time.fixedDeltaTime;
 
@@ -69,9 +72,10 @@ public class BossPlayer : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Missile") || collision.gameObject.layer == LayerMask.NameToLayer("Invader"))
+
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Missile") || collision.gameObject.layer == LayerMask.NameToLayer("Invader") || collision.gameObject.layer == LayerMask.NameToLayer("Boss"))
         {
-            GameManager.Instance.OnPlayerKilled(null,this);
+            BossGameManager.Instance.OnPlayerKilled(this);
         }
     }
 }

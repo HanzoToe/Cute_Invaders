@@ -14,8 +14,19 @@ public class BossBulletScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerPosition = GameObject.Find("Player").transform;
-        direction = (playerPosition.position - transform.position).normalized; 
+        if(playerPosition == null)
+        {
+            try
+            {
+                playerPosition = GameObject.Find("Player").transform;
+                direction = (playerPosition.position - transform.position).normalized;
+            }
+            catch
+            {
+                Debug.Log("No player");
+            }
+        }
+          
     }
 
     // Update is called once per frame

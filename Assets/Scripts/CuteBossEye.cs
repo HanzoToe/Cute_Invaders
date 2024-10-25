@@ -8,19 +8,21 @@ using UnityEngine;
 public class CuteBossEye : BossesScript
 {
     public GameObject bullet;
-
+    GameObject Position;
     public Transform bulletSpawnPoint;
     Transform playerPosition; 
 
     bool halfHp = false;
-    public bool isDashing = true;
+    bool isDashing = true;
+    bool isShooting = false; 
 
     Rigidbody2D rb;
     Vector3 direction;
 
     float originalHp;
-
+  
     SpriteRenderer sr;
+    BossLaser bl;
 
     private void Awake()
     {
@@ -34,7 +36,6 @@ public class CuteBossEye : BossesScript
     void Start()
     {
         movementSpeed = 2000f;
-        hp /= 2;
     }
 
     // Update is called once per frame
@@ -58,7 +59,7 @@ public class CuteBossEye : BossesScript
             StartCoroutine("RunAway");
         }
 
-        if(halfHp)
+        if(halfHp && !isShooting)
         {
             StartCoroutine("Shoot");
         }
@@ -68,7 +69,14 @@ public class CuteBossEye : BossesScript
     void HpCheck()
     {
         if (hp == originalHp / 2)
+        {
             halfHp = true;
+            movementSpeed = 2500f;
+        }
+        else if(hp <= 0)
+        {
+            Destroy(gameObject);
+        }    
     }
 
     void FindPLayerPosition()
@@ -134,13 +142,50 @@ public class CuteBossEye : BossesScript
     }
 
     IEnumerator Shoot()
-    {        
-        if (!isDashing)
+    {
+        isShooting = true; 
+        float shotIntervals = 0.1f;
+        float originalShotIntervals = shotIntervals;
+
+        Debug.Log(shotIntervals);
+
+        if (!isDashing && playerPosition.gameObject.active) 
         {
-            Instantiate(bullet, bulletSpawnPoint.position, Quaternion.identity);     
+            while(shotIntervals > 0f)
+            {
+                Instantiate(bullet, bulletSpawnPoint.position, playerPosition.localRotation);
+
+                shotIntervals -= 0.1f;
+            }
+
+            yield return new WaitForSeconds(0.1f);
+            shotIntervals = originalShotIntervals;
         }
 
-        yield return null; 
+        isShooting = false; 
 
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Laser"))
+        {
+            bl = collision.gameObject.GetComponent<BossLaser>();
+
+            if (bl != null)
+                hp -= bl.dmg;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Laser"))
+        {
+            bl = collision.gameObject.GetComponent<BossLaser>();
+
+            if (bl != null)
+                hp -= bl.dmg;
+        }
+    }
 }
+

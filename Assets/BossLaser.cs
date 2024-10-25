@@ -5,12 +5,19 @@ using UnityEngine;
 public class BossLaser : Projectile
 {
 
-     public Rigidbody2D rb; 
+     Rigidbody2D rb;
+
+     public float dmg;
+
+     bool destroying = false;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        dmg = damage;
+
+
         rb = GetComponent<Rigidbody2D>();
         Vector2 Mouseposition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         rb = GetComponent<Rigidbody2D>();
@@ -19,28 +26,19 @@ public class BossLaser : Projectile
         float rot = Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, rot + 90);
 
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-     
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        CheckCollision(collision);
-    }
-
-    void CheckCollision(Collider2D collision)
-    {
-        /*/Bunker bunker = collision.gameObject.GetComponent<Bunker>();
-
-        if(bunker == null) //Om det inte är en bunker vi träffat så ska skottet försvinna.
-        {
-            Destroy(gameObject);
-        }/*/
         Destroy(gameObject);
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Destroy(gameObject);
+    }
+
+    
 }
