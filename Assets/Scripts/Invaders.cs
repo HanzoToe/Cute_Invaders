@@ -1,7 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
+
 using UnityEngine;
 
 public class Invaders : MonoBehaviour
@@ -34,7 +31,7 @@ public class Invaders : MonoBehaviour
     //Skapar själva griden med alla invaders.
     void CreateInvaderGrid()
     {
-        for(int r = 0; r < row; r++)
+        for (int r = 0; r < row; r++)
         {
             float width = 2f * (col - 1);
             float height = 2f * (row - 1);
@@ -42,7 +39,7 @@ public class Invaders : MonoBehaviour
             //för att centerar invaders
             Vector2 centerOffset = new Vector2(-width * 0.5f, -height * 0.5f);
             Vector3 rowPosition = new Vector3(centerOffset.x, (2f * r) + centerOffset.y, 0f);
-            
+
             for (int c = 0; c < col; c++)
             {
                 Invader tempInvader = Instantiate(prefab[r], transform);
@@ -53,14 +50,14 @@ public class Invaders : MonoBehaviour
             }
         }
     }
-    
+
     //Aktiverar alla invaders igen och placerar från ursprungsposition
     public void ResetInvaders()
     {
         direction = Vector3.right;
         transform.position = initialPosition;
 
-        foreach(Transform invader in transform)
+        foreach (Transform invader in transform)
         {
             invader.gameObject.SetActive(true);
         }
@@ -71,18 +68,18 @@ public class Invaders : MonoBehaviour
     {
         int nrOfInvaders = GetInvaderCount();
 
-        if(nrOfInvaders == 0)
+        if (nrOfInvaders == 0)
         {
             return;
         }
 
-        foreach(Transform invader in transform)
+        foreach (Transform invader in transform)
         {
 
             if (!invader.gameObject.activeInHierarchy) //om en invader är död ska den inte kunna skjuta...
                 continue;
-            
-           
+
+
             float rand = UnityEngine.Random.value;
             if (rand < 0.2)
             {
@@ -90,7 +87,7 @@ public class Invaders : MonoBehaviour
                 break;
             }
         }
-       
+
     }
 
     //Kollar hur många invaders som lever
@@ -98,7 +95,7 @@ public class Invaders : MonoBehaviour
     {
         numberOfInvaders = 0;
 
-        foreach(Transform invader in transform)
+        foreach (Transform invader in transform)
         {
             if (invader.gameObject.activeSelf)
                 numberOfInvaders++;
