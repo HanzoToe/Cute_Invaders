@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [DefaultExecutionOrder(-1)]
 public class BossGameManager : MonoBehaviour
@@ -14,7 +15,8 @@ public class BossGameManager : MonoBehaviour
     private float respawnTimer = 0.5f;
     public float playerInvincibleFrames = 0;
 
-    private bool playerDead = false;
+    public bool playerDead = false;
+    GameObject boss;    
 
     public int lives { get; private set; } = 0;
 
@@ -42,7 +44,7 @@ public class BossGameManager : MonoBehaviour
 
     private void Start()
     {
-        bplayer = FindObjectOfType<BossPlayer>();
+        bplayer = FindObjectOfType<BossPlayer>();   
         SetLives(3);
     }
 
@@ -59,6 +61,8 @@ public class BossGameManager : MonoBehaviour
         {
             StartCoroutine("Respawn");
         }
+
+        BackToOriginalGame();
 
         if (playerInvincibleFrames > 0)
             playerInvincibleFrames -= Time.deltaTime;
@@ -112,6 +116,21 @@ public class BossGameManager : MonoBehaviour
 
     }
 
+
+    void BackToOriginalGame()
+    {
+        boss = GameObject.Find("Boss");
+
+        if (boss == null)
+        {
+            SceneManager.LoadScene(0);
+        }
+        else if(lives == 0)
+        {
+            SceneManager.LoadScene(0);
+        }
+            
+    }
 
     public void PauseMenu()
     {

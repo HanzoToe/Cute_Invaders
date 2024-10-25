@@ -1,6 +1,6 @@
 using UnityEngine;
 using System.Collections;
-
+using UnityEngine.SceneManagement;
 
 [DefaultExecutionOrder(-1)]
 public class GameManager : MonoBehaviour
@@ -19,7 +19,8 @@ public class GameManager : MonoBehaviour
     private float respawnTimer = 0.5f;
 
     private bool playerDead = false;
-    private bool bossFightActive = false; 
+
+    int mysteryShipHit = 0; 
 
     public int score { get; private set; } = 0;
     public int lives { get; private set; } = 0;
@@ -73,6 +74,8 @@ public class GameManager : MonoBehaviour
         }
 
         Debug.Log(lives);
+
+        ActivateBossFight();
     }
 
     public void NewGame()
@@ -119,7 +122,7 @@ public class GameManager : MonoBehaviour
         lives = _lives;
     }
 
-    public void OnPlayerKilled(Player player, BossPlayer _bPlayer)
+    public void OnPlayerKilled(Player player)
     {
         playerDead = true; 
        
@@ -161,6 +164,7 @@ public class GameManager : MonoBehaviour
     public void OnMysteryShipKilled(MysteryShip mysteryShip)
     {
         mysteryShip.gameObject.SetActive(false);
+        mysteryShipHit += 1; 
     }
 
     public void OnBoundaryReached()
@@ -168,16 +172,16 @@ public class GameManager : MonoBehaviour
         if (invaders.gameObject.activeSelf)
         {
             invaders.gameObject.SetActive(false);
-            OnPlayerKilled(player, null);
+            OnPlayerKilled(player);
         }
     }
 
 
     public void ActivateBossFight()
     {
-        if (bossFightActive)
+        if (mysteryShipHit == 3 && invaders.GetInvaderCount() == 0)
         {
-
+            SceneManager.LoadScene(1);
         }
     }
 

@@ -16,14 +16,12 @@ public class BossPlayer : MonoBehaviour
     Vector2 movement;
     Vector3 mouspos; 
     public Transform laserSpawnPoint;
-    BoxCollider2D bxColl;
 
     AudioManagerScript AudioManagerScript;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        bxColl = GetComponent<BoxCollider2D>();
         Orginaltime = timer;
         
         
@@ -74,7 +72,8 @@ public class BossPlayer : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Missile") || collision.gameObject.layer == LayerMask.NameToLayer("Invader"))
+
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Missile") || collision.gameObject.layer == LayerMask.NameToLayer("Invader") || collision.gameObject.layer == LayerMask.NameToLayer("Boss"))
         {
             BossGameManager.Instance.OnPlayerKilled(this);
         }

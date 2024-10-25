@@ -16,9 +16,15 @@ public class MysteryShip : MonoBehaviour
     int direction = -1;
     bool isVisible;
 
+    SpriteRenderer sr; 
+
     
     void Start()
     {
+        sr = GetComponent<SpriteRenderer>();
+
+
+
         Vector3 leftEdge = LeftEdge.transform.position;
         Vector3 rightEdge = RightEdge.transform.position;
 
@@ -41,16 +47,19 @@ public class MysteryShip : MonoBehaviour
         {
             //rör sig åt höger
             transform.position += speed * Time.deltaTime * Vector3.right;
+            sr.flipX = true;
 
             if (transform.position.x >= rightDestination.x)
             {
                 SetInvisible();
+ 
             }
         }
         else
         {
             //rör sig åt vänster
             transform.position += speed * Time.deltaTime * Vector3.left;
+            sr.flipX = false;
 
             if (transform.position.x <= leftDestination.x)
             {

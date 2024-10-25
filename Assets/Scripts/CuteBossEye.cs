@@ -22,6 +22,7 @@ public class CuteBossEye : BossesScript
     float originalHp;
   
     SpriteRenderer sr;
+    BossLaser bl;
 
     private void Awake()
     {
@@ -35,7 +36,6 @@ public class CuteBossEye : BossesScript
     void Start()
     {
         movementSpeed = 2000f;
-        hp /= 2;
     }
 
     // Update is called once per frame
@@ -69,7 +69,14 @@ public class CuteBossEye : BossesScript
     void HpCheck()
     {
         if (hp == originalHp / 2)
+        {
             halfHp = true;
+            movementSpeed = 2500f;
+        }
+        else if(hp <= 0)
+        {
+            Destroy(gameObject);
+        }    
     }
 
     void FindPLayerPosition()
@@ -158,4 +165,27 @@ public class CuteBossEye : BossesScript
         isShooting = false; 
 
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Laser"))
+        {
+            bl = collision.gameObject.GetComponent<BossLaser>();
+
+            if (bl != null)
+                hp -= bl.dmg;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Laser"))
+        {
+            bl = collision.gameObject.GetComponent<BossLaser>();
+
+            if (bl != null)
+                hp -= bl.dmg;
+        }
+    }
 }
+
