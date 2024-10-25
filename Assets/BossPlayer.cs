@@ -47,6 +47,17 @@ public class BossPlayer : MonoBehaviour
 
         }
 
+        int Shootingnum = Random.Range(1, 3);
+        Debug.Log(Shootingnum);
+        if (Shootingnum == 1)
+        {
+            AudioManagerScript.Instance.PlaySFX("Shoot1");
+        }
+        else if (Shootingnum == 2 || Shootingnum == 3)
+        {
+            AudioManagerScript.Instance.PlaySFX("Shoot2");
+        }
+
         GetMousePos();
     }
 
