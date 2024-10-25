@@ -80,6 +80,7 @@ public class Invaders : MonoBehaviour
             return;
         }
 
+        //Tar invader lista och randomiserar vilken i listam som skjuter - Pelle
         int rand = UnityEngine.Random.Range(0, invaderList.Count - 1);
         Transform invaderShoot = invaderList[rand];
         if (!invaderShoot.gameObject.activeInHierarchy)

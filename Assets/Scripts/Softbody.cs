@@ -21,6 +21,7 @@ public class Softbody : MonoBehaviour
 
     private void UpdateVerticies()
     {
+        //sätter verexerna på sprite shapen till vertex punkerna. - Pelle
         for (int i = 0; i < points.Length - 1; i++)
         {
             Vector2 vertex = points[i].localPosition;
@@ -30,6 +31,8 @@ public class Softbody : MonoBehaviour
             float colliderRadius = points[i].gameObject.GetComponent<CircleCollider2D>().radius;
 
             spriteShape.spline.SetPosition(i, (vertex - towardsCenter * (colliderRadius * 0.5f)));
+
+            //ändrar vinklarna på punkerna till 90 grader från mittpunk år båda hållen - Pelle
 
             Vector2 lt = spriteShape.spline.GetLeftTangent(i);
 
