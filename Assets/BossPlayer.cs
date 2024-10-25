@@ -7,14 +7,15 @@ public class BossPlayer : MonoBehaviour
 {
     public GameObject LeftEdge;
     public GameObject RightEdge;
-    public Laser laserPrefab;
-    Laser laser;
+    public BossLaser laserPrefab;
+    BossLaser laser;
     public float speed = 500f;
     public float timer = 0.2f;
     public float Orginaltime;
     Rigidbody2D rb;
     Vector2 movement;
     Vector3 mouspos; 
+    public Transform laserSpawnPoint;
 
     AudioManagerScript AudioManagerScript;
 
@@ -22,9 +23,11 @@ public class BossPlayer : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         Orginaltime = timer;
+        
+        
         AudioManagerScript = GameObject.Find("AudioManager").GetComponent<AudioManagerScript>();
 
-        //-Love
+        //-Love ^
     }
 
     // Update is called once per frame
@@ -33,9 +36,10 @@ public class BossPlayer : MonoBehaviour
 
         timer -= Time.deltaTime;
 
+
         if (Input.GetKey(KeyCode.Space) && timer <= 0)
         {
-            laser = Instantiate(laserPrefab, transform.position + new Vector3(0, 1), Quaternion.identity);
+            laser = Instantiate(laserPrefab, laserSpawnPoint.position + new Vector3(0, 1), Quaternion.identity);
             timer = Orginaltime;
 
             AudioManagerScript.Instance.PlaySFX("Shoot1");
@@ -48,9 +52,9 @@ public class BossPlayer : MonoBehaviour
 
     private void FixedUpdate()
     {
-        movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
 
-        rb.velocity = movement * speed * Time.deltaTime;
+        rb.velocity = movement * speed * Time.fixedDeltaTime;
 
     }
 
@@ -68,9 +72,10 @@ public class BossPlayer : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Missile") || collision.gameObject.layer == LayerMask.NameToLayer("Invader"))
+
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Missile") || collision.gameObject.layer == LayerMask.NameToLayer("Invader") || collision.gameObject.layer == LayerMask.NameToLayer("Boss"))
         {
-            GameManager.Instance.OnPlayerKilled(null,this);
+            BossGameManager.Instance.OnPlayerKilled(this);
         }
     }
 }

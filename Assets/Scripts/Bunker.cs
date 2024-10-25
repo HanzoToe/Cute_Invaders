@@ -1,7 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Animations;
-using UnityEditor.Timeline;
 using UnityEngine;
 using UnityEngine.U2D;
 

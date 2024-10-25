@@ -1,14 +1,12 @@
 using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Timeline.Actions;
-using System.Threading;
+using UnityEngine.SceneManagement;
 
 [DefaultExecutionOrder(-1)]
 public class GameManager : MonoBehaviour
 {
     public GameObject DeathScreen;
-
+    public GameObject PauseScreen;
     private SugarRush sugarRushScript;
     private SugarRushBar sugarRushBar; 
     public static GameManager Instance { get; private set; }
@@ -21,7 +19,8 @@ public class GameManager : MonoBehaviour
     private float respawnTimer = 0.5f;
 
     private bool playerDead = false;
-    private bool bossFightActive = false; 
+
+    int mysteryShipHit = 0; 
 
     public int score { get; private set; } = 0;
     public int lives { get; private set; } = 0;
@@ -74,6 +73,9 @@ public class GameManager : MonoBehaviour
             StartCoroutine("Respawn");
         }
 
+        Debug.Log(lives);
+
+        ActivateBossFight();
     }
 
     public void NewGame()
@@ -88,6 +90,8 @@ public class GameManager : MonoBehaviour
 
     private void NewRound()
     {
+      
+
         invaders.ResetInvaders();
         invaders.gameObject.SetActive(true);
         mysteryShip.gameObject.SetActive(true);
@@ -118,16 +122,13 @@ public class GameManager : MonoBehaviour
         lives = _lives;
     }
 
-    public void OnPlayerKilled(Player player, BossPlayer bPlayer)
+    public void OnPlayerKilled(Player player)
     {
         playerDead = true; 
        
         lives--;
         
-        if(bPlayer != null)
-            bPlayer.gameObject.SetActive(false);
-        else
-            player.gameObject.SetActive(false);
+        player.gameObject.SetActive(false);
     }
 
 
@@ -135,7 +136,7 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(respawnTimer);
 
-        if (lives > 0)
+        if (lives > 0 && player != null)
         {            
             Vector3 position = player.transform.position;
             position.x = 0f;
@@ -163,6 +164,7 @@ public class GameManager : MonoBehaviour
     public void OnMysteryShipKilled(MysteryShip mysteryShip)
     {
         mysteryShip.gameObject.SetActive(false);
+        mysteryShipHit += 1; 
     }
 
     public void OnBoundaryReached()
@@ -170,16 +172,21 @@ public class GameManager : MonoBehaviour
         if (invaders.gameObject.activeSelf)
         {
             invaders.gameObject.SetActive(false);
-            OnPlayerKilled(player, null);
+            OnPlayerKilled(player);
         }
     }
 
 
     public void ActivateBossFight()
     {
-        if (bossFightActive)
+        if (mysteryShipHit == 3)
         {
-
+            SceneManager.LoadScene(1);
         }
+    }
+
+    public void PauseMenu()
+    {
+        PauseScreen.SetActive(true);
     }
 }

@@ -180,7 +180,9 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 4ee8e4869dcd51d48a5834898b9189b5, type: 3}
   sfxSounds:
   - name: Shoot1
-    clip: {fileID: 8300000, guid: 42769b6d2c937514486471255c78e8f3, type: 3}
+    clip: {fileID: 8300000, guid: 9f31e762fb48ec541a561833ac926ed3, type: 3}
+  - name: Shoot2
+    clip: {fileID: 8300000, guid: bd041fc68f3258840be99b1b04cfdf72, type: 3}
   musicSource: {fileID: 192863383602562199}
   sfxSource: {fileID: 5681531435368558251}
 --- !u!1 &6978176823071807860

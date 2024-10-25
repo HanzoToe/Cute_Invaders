@@ -49,10 +49,16 @@ public class CameraShake : MonoBehaviour
         
         void SugarRushShake()
         {
-        if (sugarRushScript.sugarRushModeActive)
-            ShakeIntensity = sugarRushShakeIntesnity;
-        else
-            ShakeIntensity = originalShakeIntensity; 
+
+
+          if(sugarRushScript != null)
+          {
+            if (sugarRushScript.sugarRushModeActive)
+                ShakeIntensity = sugarRushShakeIntesnity;
+            else
+                ShakeIntensity = originalShakeIntensity;
+          }
+        
 
         }
 
