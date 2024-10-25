@@ -86,6 +86,7 @@ public class GameManager : MonoBehaviour
         DeathScreen.SetActive(false);
         sugarRushScript.startCharge = 0;
         sugarRushBar.RemoveBar();
+        mysteryShipHit = 0; 
     }
 
     private void NewRound()

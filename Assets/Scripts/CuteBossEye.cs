@@ -8,7 +8,6 @@ using UnityEngine;
 public class CuteBossEye : BossesScript
 {
     public GameObject bullet;
-    GameObject Position;
     public Transform bulletSpawnPoint;
     Transform playerPosition; 
 
@@ -35,7 +34,7 @@ public class CuteBossEye : BossesScript
     // Start is called before the first frame update
     void Start()
     {
-        movementSpeed = 1500f;
+        movementSpeed = 700f;
     }
 
     // Update is called once per frame
@@ -68,10 +67,12 @@ public class CuteBossEye : BossesScript
 
     void HpCheck()
     {
+        //Check if the hp is at it's original state or not
+
         if (hp == originalHp / 2)
         {
             halfHp = true;
-            movementSpeed = 2250f;
+            movementSpeed = 1000f;
         }
         else if(hp <= 0)
         {
@@ -81,6 +82,8 @@ public class CuteBossEye : BossesScript
 
     void FindPLayerPosition()
     {
+
+        //Search for the player position using the player transform and boss transform.
         if (playerPosition)
         {
             direction = (playerPosition.position - transform.position).normalized;
@@ -91,6 +94,9 @@ public class CuteBossEye : BossesScript
 
     void FacePlayer()
     {
+        //Flip the boss so it faces the player using transforms and spriterenderer
+
+
         Vector2 direction = ((Vector2)playerPosition.position - (Vector2)transform.position).normalized;
         transform.right = direction.normalized;
 
@@ -109,6 +115,8 @@ public class CuteBossEye : BossesScript
 
     IEnumerator Chase()
     {
+        //Move in the direction of the player
+
         float _chaseTime = 1f;
         float _waitTime = 1f;
         Vector2 moveDirection = direction;
@@ -129,6 +137,8 @@ public class CuteBossEye : BossesScript
 
     IEnumerator RunAway()
     {
+        //Run away from the player
+
         Vector3 _direction = (transform.position - playerPosition.position).normalized;
         Vector2 moveAway = _direction;
         float runAwaySpeed = 500f;
@@ -143,6 +153,8 @@ public class CuteBossEye : BossesScript
 
     IEnumerator Shoot()
     {
+        //Shoot at the player in certain intervals
+
         isShooting = true; 
         float shotIntervals = 0.1f;
         float originalShotIntervals = shotIntervals;
@@ -165,6 +177,10 @@ public class CuteBossEye : BossesScript
         isShooting = false; 
 
     }
+
+
+    //Take damage from laser
+
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
