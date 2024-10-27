@@ -74,8 +74,6 @@ public class GameManager : MonoBehaviour
             StartCoroutine("Respawn");
         }
 
-        Debug.Log(lives);
-
         ActivateBossFight();
 
         if (Input.GetKeyDown(KeyCode.Escape) && !GameIsPaused)
@@ -193,11 +191,11 @@ public class GameManager : MonoBehaviour
     {
         if (mysteryShipHit == 3)
         {
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(2);
         }
     }
 
-    public void PauseMenu()
+    private void PauseMenu()
     {
         GameIsPaused = true;
         PauseScreen.SetActive(true);
@@ -208,5 +206,10 @@ public class GameManager : MonoBehaviour
         GameIsPaused = false;
         PauseScreen.SetActive(false);
         Time.timeScale = 1f;
+    }
+
+    public void BackToMainMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 }

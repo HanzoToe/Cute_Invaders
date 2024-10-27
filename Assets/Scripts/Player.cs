@@ -62,7 +62,6 @@ public class Player : MonoBehaviour
             timer = Orginaltime;
 
             int Shootingnum = Random.Range(1, 3);
-            Debug.Log(Shootingnum);
             if (Shootingnum == 1)
             {
                 AudioManagerScript.Instance.PlaySFX("Shoot1");

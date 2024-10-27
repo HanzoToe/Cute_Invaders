@@ -15,6 +15,7 @@ public class BossGameManager : MonoBehaviour
     private float respawnTimer = 0.5f;
     public float playerInvincibleFrames = 0;
 
+    private bool GameIsPaused = false;
     public bool playerDead = false;
     GameObject boss;    
 
@@ -68,14 +69,16 @@ public class BossGameManager : MonoBehaviour
             playerInvincibleFrames -= Time.deltaTime;
         else
             playerInvincibleFrames = Mathf.Max(0, playerInvincibleFrames);
+
+        if (Input.GetKeyDown(KeyCode.Escape) && !GameIsPaused)
+        {
+            PauseMenu();
+        }
+        else if (Input.GetKeyDown(KeyCode.Escape) && GameIsPaused)
+        {
+            UnPauseMenu();
+        }
     }
-
-
-    private void GameOver()
-    {
-        DeathScreen.SetActive(true);
-    }
-
 
     private void SetLives(int _lives)
     {
@@ -123,17 +126,39 @@ public class BossGameManager : MonoBehaviour
 
         if (boss == null)
         {
-            SceneManager.LoadScene(0);
+            GameOver();
         }
         else if(lives == 0)
         {
-            SceneManager.LoadScene(0);
+            GameOver();
         }
-            
     }
 
-    public void PauseMenu()
+    private void GameOver()
     {
+        DeathScreen.SetActive(true);
+        Time.timeScale = 0f;
+    }
+    void PauseMenu()
+    {
+        GameIsPaused = true;
         PauseScreen.SetActive(true);
+        Time.timeScale = 0f;
+    }
+    public void UnPauseMenu()
+    {
+        GameIsPaused = false;
+        PauseScreen.SetActive(false);
+        Time.timeScale = 1f;
+    }
+
+    public void BackToMainMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(1);
+        Time.timeScale = 1f;
     }
 }
