@@ -47,6 +47,22 @@ public class AudioManagerScript : MonoBehaviour
         }
     
     }
+    public void StopMusic(string name)
+    {
+        Sound s = Array.Find(musicSounds, x => x.name == name);
+
+        if (s == null)
+        {
+            Debug.Log("Ljud källa finns ej");
+        }
+
+        else
+        {
+            musicSource.clip = s.clip;
+            musicSource.Stop();
+        }
+
+    }
     public void PlaySFX(String name)
     {
         Sound s = Array.Find(sfxSounds, x => x.name == name);
@@ -59,6 +75,20 @@ public class AudioManagerScript : MonoBehaviour
         else
         {
             sfxSource.PlayOneShot(s.clip);
+        }
+    }
+    public void StopSFX(String name)
+    {
+        Sound s = Array.Find(sfxSounds, x => x.name == name);
+
+        if (s == null)
+        {
+            Debug.Log("Ljud källa finns ej");
+        }
+
+        else
+        {
+            sfxSource.Stop();
         }
     }
 

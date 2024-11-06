@@ -9,6 +9,7 @@ public class BossGameManager : MonoBehaviour
     public GameObject DeathScreen;
     public GameObject PauseScreen;
     public static BossGameManager Instance { get; private set; }
+    AudioManagerScript AudioManagerscript;
 
     private BossPlayer bplayer;
 
@@ -33,6 +34,7 @@ public class BossGameManager : MonoBehaviour
         {
             Instance = this;
         }
+        
     }
 
     private void OnDestroy()
@@ -47,6 +49,8 @@ public class BossGameManager : MonoBehaviour
     {
         bplayer = FindObjectOfType<BossPlayer>();   
         SetLives(3);
+        AudioManagerscript = GameObject.Find("AudioManager").GetComponent<AudioManagerScript>();
+        AudioManagerscript.Instance.StopMusic("Theme1");
     }
 
     private void Update()

@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     private MysteryShip mysteryShip;
     private Bunker[] bunkers;
 
+
     private float respawnTimer = 0.5f;
 
     private bool playerDead = false;
@@ -189,7 +190,7 @@ public class GameManager : MonoBehaviour
 
     public void ActivateBossFight()
     {
-        if (mysteryShipHit == 3)
+        if (mysteryShipHit == 1)
         {
             SceneManager.LoadScene(2);
         }

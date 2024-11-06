@@ -39,6 +39,7 @@ public class Bunker : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         AudioManagerScript.Instance.PlaySFX("JelloJiggle");
+        Invoke("StopSfxAudio", 1.25f);
 
         if (other.gameObject.layer == LayerMask.NameToLayer("Missile") || other.gameObject.layer == LayerMask.NameToLayer("Invader"))
         {
@@ -106,5 +107,9 @@ public class Bunker : MonoBehaviour
         }
         sSRender.color = new Color(originalColor.r, originalColor.g, originalColor.b, 0);
         gameObject.SetActive(false);
+    }
+    private void StopSfxAudio()
+    {
+        AudioManagerScript.Instance.StopSFX("JelloJiggle");
     }
 }
