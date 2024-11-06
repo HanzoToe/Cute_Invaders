@@ -1651,6 +1651,10 @@ PrefabInstance:
       propertyPath: m_Creator
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3554405407962164026, guid: 0c3f9e4d2d32697449676ea998232f94, type: 3}
+      propertyPath: m_UTess2D
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3905615815607889170, guid: 0c3f9e4d2d32697449676ea998232f94, type: 3}
       propertyPath: m_Distance
       value: 1.7290459

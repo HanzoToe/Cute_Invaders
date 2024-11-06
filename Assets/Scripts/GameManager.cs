@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     private SugarRush sugarRushScript;
     private SugarRushBar sugarRushBar; 
     public static GameManager Instance { get; private set; }
+    AudioManagerScript AudioManagerscript;
 
     private Player player;
     private Invaders invaders;
@@ -29,8 +30,6 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-
-
         if (Instance != null)
         {
             Destroy(gameObject);
@@ -39,6 +38,13 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
         }
+        player = FindObjectOfType<Player>();
+        invaders = FindObjectOfType<Invaders>();
+        mysteryShip = FindObjectOfType<MysteryShip>();
+        bunkers = FindObjectsOfType<Bunker>();
+        sugarRushScript = FindObjectOfType<SugarRush>();
+        sugarRushBar = FindObjectOfType<SugarRushBar>();
+        AudioManagerscript = GameObject.Find("AudioManager").GetComponent<AudioManagerScript>();
     }
 
     private void OnDestroy()
@@ -51,13 +57,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        player = FindObjectOfType<Player>();
-        invaders = FindObjectOfType<Invaders>();
-        mysteryShip = FindObjectOfType<MysteryShip>();
-        bunkers = FindObjectsOfType<Bunker>();
-        sugarRushScript = FindObjectOfType<SugarRush>();
-        sugarRushBar = FindObjectOfType<SugarRushBar>();
-
+        AudioManagerscript.Instance.PlayMusic("Theme1");
         NewGame();
     }
 
@@ -118,6 +118,9 @@ public class GameManager : MonoBehaviour
 
     private void GameOver()
     {
+        AudioManagerscript.Instance.StopSFX("JelloJiggle");
+        AudioManagerscript.Instance.StopSFX("Shoot1");
+        AudioManagerscript.Instance.StopSFX("Shoot2");
         invaders.gameObject.SetActive(false);
         mysteryShip.gameObject.SetActive(false);
         DeathScreen.SetActive(true);
@@ -192,18 +195,30 @@ public class GameManager : MonoBehaviour
     {
         if (mysteryShipHit == 1)
         {
+            AudioManagerscript.Instance.musicSource.Stop();
+            AudioManagerscript.Instance.StopSFX("JelloJiggle");
+            AudioManagerscript.Instance.StopSFX("Shoot1");
+            AudioManagerscript.Instance.StopSFX("Shoot2");
             SceneManager.LoadScene(2);
         }
     }
 
     private void PauseMenu()
     {
+        AudioManagerscript.Instance.StopSFX("JelloJiggle");
+        AudioManagerscript.Instance.StopSFX("Shoot1");
+        AudioManagerscript.Instance.StopSFX("Shoot2");
+        player.ToggleLockstateOFF();
         GameIsPaused = true;
         PauseScreen.SetActive(true);
         Time.timeScale = 0f;
     }
     public void UnPauseMenu()
     {
+        AudioManagerscript.Instance.StopSFX("JelloJiggle");
+        AudioManagerscript.Instance.StopSFX("Shoot1");
+        AudioManagerscript.Instance.StopSFX("Shoot2");
+        player.ToggleLockstateON();
         GameIsPaused = false;
         PauseScreen.SetActive(false);
         Time.timeScale = 1f;
@@ -211,6 +226,10 @@ public class GameManager : MonoBehaviour
 
     public void BackToMainMenu()
     {
+        AudioManagerscript.Instance.musicSource.Stop();
+        AudioManagerscript.Instance.StopSFX("JelloJiggle");
+        AudioManagerscript.Instance.StopSFX("Shoot1");
+        AudioManagerscript.Instance.StopSFX("Shoot2");
         SceneManager.LoadScene(0);
     }
 }

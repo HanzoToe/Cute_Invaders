@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
     
     private void Start()
     {
+        Cursor.lockState = CursorLockMode.Locked;
         sugarRushScript = GetComponent<SugarRush>();
         Orginaltime = timer;
         AudioManagerScript = GameObject.Find("AudioManager").GetComponent<AudioManagerScript>();
@@ -80,5 +81,13 @@ public class Player : MonoBehaviour
         {
             GameManager.Instance.OnPlayerKilled(this);
         }
+    }
+    public void ToggleLockstateON()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+    public void ToggleLockstateOFF()
+    {
+        Cursor.lockState = CursorLockMode.None;
     }
 }

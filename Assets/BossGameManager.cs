@@ -24,7 +24,7 @@ public class BossGameManager : MonoBehaviour
 
     private void Awake()
     {
-
+        AudioManagerscript = GameObject.Find("AudioManager").GetComponent<AudioManagerScript>();
 
         if (Instance != null)
         {
@@ -34,7 +34,6 @@ public class BossGameManager : MonoBehaviour
         {
             Instance = this;
         }
-        
     }
 
     private void OnDestroy()
@@ -43,14 +42,16 @@ public class BossGameManager : MonoBehaviour
         {
             Instance = null;
         }
+        
     }
 
     private void Start()
     {
+        
         bplayer = FindObjectOfType<BossPlayer>();   
         SetLives(3);
-        AudioManagerscript = GameObject.Find("AudioManager").GetComponent<AudioManagerScript>();
-        AudioManagerscript.Instance.StopMusic("Theme1");
+        
+        AudioManagerscript.Instance.PlayMusic("Theme1");
     }
 
     private void Update()
@@ -158,10 +159,18 @@ public class BossGameManager : MonoBehaviour
 
     public void BackToMainMenu()
     {
+        AudioManagerscript.Instance.StopMusic("Theme1");
+        AudioManagerscript.Instance.StopSFX("JelloJiggle");
+        AudioManagerscript.Instance.StopSFX("Shoot1");
+        AudioManagerscript.Instance.StopSFX("Shoot2");
         SceneManager.LoadScene(0);
     }
     public void RestartGame()
     {
+        AudioManagerscript.Instance.StopMusic("Theme1");
+        AudioManagerscript.Instance.StopSFX("JelloJiggle");
+        AudioManagerscript.Instance.StopSFX("Shoot1");
+        AudioManagerscript.Instance.StopSFX("Shoot2");
         SceneManager.LoadScene(1);
         Time.timeScale = 1f;
     }

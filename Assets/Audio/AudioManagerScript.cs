@@ -26,10 +26,7 @@ public class AudioManagerScript : MonoBehaviour
 
     private void Start()
     {
-      
-            PlayMusic("Theme1");
-
-      
+        
     }
     public void PlayMusic(string name)
     {
@@ -63,7 +60,7 @@ public class AudioManagerScript : MonoBehaviour
         }
 
     }
-    public void PlaySFX(String name)
+    public void PlaySFX(string name)
     {
         Sound s = Array.Find(sfxSounds, x => x.name == name);
 
@@ -77,7 +74,7 @@ public class AudioManagerScript : MonoBehaviour
             sfxSource.PlayOneShot(s.clip);
         }
     }
-    public void StopSFX(String name)
+    public void StopSFX(string name)
     {
         Sound s = Array.Find(sfxSounds, x => x.name == name);
 
@@ -100,6 +97,7 @@ public class AudioManagerScript : MonoBehaviour
     {
         sfxSource.mute = !sfxSource.mute;
     }
+
     public void MusicVolume(float volume)
     {
         musicSource.volume = volume;

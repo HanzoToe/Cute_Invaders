@@ -11,6 +11,7 @@ public class Bunker : MonoBehaviour
     private List<Transform> Child = new List<Transform>();
     private List<Vector3> startLoc = new List<Vector3>();
     private SpriteShapeRenderer sSRender;
+
     float fadeDuration = 2.0f;
     Color trueOriginalColor;
 
@@ -35,11 +36,14 @@ public class Bunker : MonoBehaviour
         //audio manager - Love
         AudioManagerScript = GameObject.Find("AudioManager").GetComponent<AudioManagerScript>();
     }
-
+    private void Update()
+    {
+        
+    }
     private void OnTriggerEnter2D(Collider2D other)
     {
         AudioManagerScript.Instance.PlaySFX("JelloJiggle");
-        Invoke("StopSfxAudio", 1.25f);
+        Invoke("StopJelloAudio", 0.75f);
 
         if (other.gameObject.layer == LayerMask.NameToLayer("Missile") || other.gameObject.layer == LayerMask.NameToLayer("Invader"))
         {
@@ -108,7 +112,7 @@ public class Bunker : MonoBehaviour
         sSRender.color = new Color(originalColor.r, originalColor.g, originalColor.b, 0);
         gameObject.SetActive(false);
     }
-    private void StopSfxAudio()
+    private void StopJelloAudio()
     {
         AudioManagerScript.Instance.StopSFX("JelloJiggle");
     }

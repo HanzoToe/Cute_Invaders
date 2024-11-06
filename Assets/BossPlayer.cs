@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
+
 
 public class BossPlayer : MonoBehaviour
 {
@@ -16,11 +16,12 @@ public class BossPlayer : MonoBehaviour
     Vector2 movement;
     Vector3 mouspos; 
     public Transform laserSpawnPoint;
-
     AudioManagerScript AudioManagerScript;
+    
 
     private void Start()
     {
+        Cursor.lockState = CursorLockMode.None;
         rb = GetComponent<Rigidbody2D>();
         Orginaltime = timer;
         
@@ -58,7 +59,11 @@ public class BossPlayer : MonoBehaviour
             AudioManagerScript.Instance.PlaySFX("Shoot2");
         }
 
-        GetMousePos();
+        if (Time.timeScale == 1f)
+        {
+            GetMousePos();
+        }
+            
     }
 
     private void FixedUpdate()
